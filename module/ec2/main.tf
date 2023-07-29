@@ -9,11 +9,11 @@ provider "aws" {
 
 # CREATE INSTANCE
 
-resource "aws_instance" "myInstance" {
+# resource "aws_instance" "myInstance" {
 
 
-  ami           = var.linux
-  instance_type = "t2.micro"
+#   ami           = var.linux
+#   instance_type = "t2.micro"
 
 
-}
+# }
