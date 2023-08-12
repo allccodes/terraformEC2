@@ -13,7 +13,7 @@ resource "aws_instance" "myInstance" {
 
 
    ami           = var.linux
-   instance_type = "t2.micro"
+   instance_type = var.inst_type
 
   }
 
