@@ -1,8 +1,8 @@
 # PROVIDER
 
-provider "aws" {
-  region = "us-east-1"
-}
+# provider "aws" {
+#   region = "us-east-1"
+# }
 
 
 
@@ -10,7 +10,6 @@ provider "aws" {
 # CREATE INSTANCE
 
 resource "aws_instance" "myInstance" {
-
 
    ami           = var.linux
    instance_type = var.inst_type
