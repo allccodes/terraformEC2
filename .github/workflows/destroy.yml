@@ -1,20 +1,21 @@
-name: 'Plan'
+name: 'Destroy'
 
 on:
-  pull_request:
-    branches: [ main ]
-    paths:
-      - 'terraform/**'
-  workflow_dispatch:
+    workflow_dispatch:
+        inputs:
+            dir:
+                description: 'Directory with resources to be destroyed'
+                required: true
+                default: 'terraform'
 
 jobs:
   terraform:
-    name: 'plan'
+    name: 'destroy'
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     runs-on: ubuntu-latest
-    environment: plan
+    environment: destroy
 
     defaults:
       run:
@@ -35,6 +36,5 @@ jobs:
         run: terraform init
 
     
-      - name: Terraform Plan
-        run: terraform plan -no-color
-        continue-on-error: true
+      - name: Terraform Destroy
+        run: terraform destroy --auto-a
