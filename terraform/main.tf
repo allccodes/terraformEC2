@@ -4,6 +4,10 @@ module "ec2" {
    inst_type = "t2.micro"
 }
 
+ provider "aws" {
+   region = "us-east-1"
+}
+
 
 # Colocado para importar
 # resource "aws_instance" "console" {
