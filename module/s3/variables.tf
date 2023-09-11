@@ -1,4 +1,4 @@
-var bucket_name {
+var "bucket_name" {
     type    = string
     default = "mybucketName"
 }
