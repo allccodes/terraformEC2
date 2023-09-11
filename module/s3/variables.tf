@@ -1,5 +1,5 @@
 variable "bucket_name" {
     type    = string
-    default = "mybucketName"
+    description = "Name of the S3 bucket."
 }
 

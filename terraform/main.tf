@@ -11,6 +11,6 @@ provider "aws" {
 
  module "s3" {
     source    = "../module/s3"
-    bucket_name = "mybucketporra"
+    bucket_name = "mybucketporras"
 }
 
