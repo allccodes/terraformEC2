@@ -14,3 +14,7 @@ provider "aws" {
     bucket_name = "mybucketMerdas"
 }
 
+
+
+
+# https://cs.fyi/guide/renaming-things-in-terraform
