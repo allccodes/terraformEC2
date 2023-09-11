@@ -1,5 +1,5 @@
 
-resource "aws_s3_bucket" "secure_bucket" {
+resource "aws_s3_bucket" "myBucket" {
   bucket        = var.bucket_name
   force_destroy = false
 
