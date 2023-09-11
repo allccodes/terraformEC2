@@ -1,10 +1,10 @@
 
 # CREATE INSTANCE
 
-resource "aws_instance" "myInstance" {
-   ami           = var.linux
-   instance_type = var.inst_type
-  }
+# resource "aws_instance" "myInstance" {
+#    ami           = var.linux
+#    instance_type = var.inst_type
+# }
 
 
 # CREATE DINAMO TABLE
