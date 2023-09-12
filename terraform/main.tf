@@ -11,10 +11,11 @@ provider "aws" {
 
  module "s3" {
     source    = "../module/s3"
-    bucket_name = "mybuckettreas02"
+    bucket_name = "novobucket001"
 }
 
 
 
 
 # https://cs.fyi/guide/renaming-things-in-terraform
+# https://hackernoon.com/change-the-name-of-an-aws-s3-bucket-in-terraform-without-breaking-things
