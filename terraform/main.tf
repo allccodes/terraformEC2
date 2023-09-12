@@ -19,3 +19,19 @@ provider "aws" {
 
 # https://cs.fyi/guide/renaming-things-in-terraform
 # https://hackernoon.com/change-the-name-of-an-aws-s3-bucket-in-terraform-without-breaking-things
+
+
+
+# https://www.bitslovers.com/terraform-data/
+
+output "available_zones" {
+  value = data.aws_availability_zones.example.names
+}
+
+data "aws_availability_zones" "az_available" {
+  state = "available"
+}
+
+module "vpc" {
+azs = data.aws_availability_zones.az_available.names
+}
