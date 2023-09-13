@@ -11,10 +11,11 @@ module "vpc" {
 
 
 module "ec2" {
+   depends_on=["module.vpc"]
   source    = "../module/ec2"
   linux     = "ami-06ca3ca175f37dd66"
   inst_type = "t2.micro"
-  vpc_id = module.vpc.vpc_id
+  #vpc_id = module.vpc.vpc_id
 }
 
 
