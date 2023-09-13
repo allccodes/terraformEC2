@@ -16,6 +16,11 @@ module "s3" {
 }
 
 
+module "vpc" {
+  source    = "../module/s3"
+}
+
+
 
 
 # https://cs.fyi/guide/renaming-things-in-terraform
