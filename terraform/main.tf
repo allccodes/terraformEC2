@@ -36,6 +36,6 @@ output "available_zones" {
   value = data.aws_availability_zones.available.names
 }
 
-data "aws_availability_zones" "az_available" {
-  state = "available"
-}
+
+
+
