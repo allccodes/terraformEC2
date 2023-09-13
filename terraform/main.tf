@@ -17,7 +17,7 @@ module "s3" {
 
 
 module "vpc" {
-  source    = "../module/s3"
+  source    = "../module/vpc"
 }
 
 
