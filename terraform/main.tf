@@ -24,14 +24,18 @@ provider "aws" {
 
 # https://www.bitslovers.com/terraform-data/
 
+
+
+module "vpc" {
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "5.1.2"
+  azs = data.aws_availability_zones.az_available.names
+}
+
 output "available_zones" {
   value = data.aws_availability_zones.example.names
 }
 
 data "aws_availability_zones" "az_available" {
   state = "available"
-}
-
-module "vpc" {
-azs = data.aws_availability_zones.az_available.names
 }
