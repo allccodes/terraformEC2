@@ -40,9 +40,9 @@ resource "aws_security_group" "public_instance_ssh" {
 }
 
 
-resource "aws_security_group" "public_instance_ssh" {
+resource "aws_security_group" "public_instance_80" {
   name        = "Public-instance"
-  description = "expose SSH"
+  description = "expose HTTP"
   vpc_id      = module.vpc.vpc_id
   ingress {
     protocol        = "tcp"
