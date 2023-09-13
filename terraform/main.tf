@@ -32,9 +32,9 @@ module "vpc" {
   #azs = data.aws_availability_zones.az_available.names
 }
 
-output "available_zones" {
-  value = data.aws_availability_zones.available.names
-}
+# output "available_zones" {
+#   value = data.aws_availability_zones.available.names
+# }
 
 
 
