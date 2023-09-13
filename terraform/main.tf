@@ -4,18 +4,18 @@ provider "aws" {
 
 
 
-module "vpc" {
-  source    = "../module/vpc"
-}
+# module "vpc" {
+#   source    = "../module/vpc"
+# }
 
 
 
-module "ec2" {
-  depends_on = [module.vpc]
-  source    = "../module/ec2"
-  linux     = "ami-06ca3ca175f37dd66"
-  inst_type = "t2.micro"
-}
+# module "ec2" {
+#   depends_on = [module.vpc]
+#   source    = "../module/ec2"
+#   linux     = "ami-06ca3ca175f37dd66"
+#   inst_type = "t2.micro"
+# }
 
 
 # module "s3" {
