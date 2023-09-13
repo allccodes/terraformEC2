@@ -10,10 +10,10 @@ module "ec2" {
 }
 
 
-module "s3" {
-  source    = "../module/s3"
-  bucket_name = "novobucket001"
-}
+# module "s3" {
+#   source    = "../module/s3"
+#   bucket_name = "novobucket001"
+# }
 
 
 module "vpc" {
