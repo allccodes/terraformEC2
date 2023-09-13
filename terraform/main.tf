@@ -26,11 +26,11 @@ provider "aws" {
 
 
 
-module "vpc" {
-  source  = "terraform-aws-modules/vpc/aws"
-  version = "5.1.2"
-  #azs = data.aws_availability_zones.az_available.names
-}
+# module "vpc" {
+#   source  = "terraform-aws-modules/vpc/aws"
+#   version = "5.1.2"
+#   #azs = data.aws_availability_zones.az_available.names
+# }
 
 # output "available_zones" {
 #   value = data.aws_availability_zones.available.names
