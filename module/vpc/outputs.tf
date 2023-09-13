@@ -3,5 +3,5 @@
 # }
 
 output "vpc_id" {
-     vvalue = module.vpc.vpc_id
+     value = module.vpc.vpc_id
 }
