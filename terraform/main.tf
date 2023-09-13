@@ -28,16 +28,13 @@ provider "aws" {
 
 module "vpc" {
    source  = "../module/vpc"
+   aws_region = "us-east-1"
    #azs = data.aws_availability_zones.az_available.names
 }
 
 output "list_of_az" {
   value = module.vpc.list_of_az
 }
-
-# output "available_zones" {
-#   value = data.aws_availability_zones.available.names
-# }
 
 
 
