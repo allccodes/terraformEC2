@@ -24,7 +24,7 @@ resource "aws_instance" "myInstance" {
 # # https://stackoverflow.com/questions/75797258/how-do-i-reference-a-resource-created-from-different-module-in-my-current-module
 
 resource "aws_security_group" "public_instance_ssh" {
-  name        = "Public-instance"
+  name        = "Public-instance-SSH"
   description = "expose SSH"
   # vpc_id      = module.vpc.vpc_id
   vpc_id     = var.vpc_id
@@ -46,7 +46,7 @@ resource "aws_security_group" "public_instance_ssh" {
 
 
 resource "aws_security_group" "public_instance_http" {
-  name        = "Public-instance"
+  name        = "Public-instance-HTTP"
   description = "expose HTTP"
   # vpc_id      = module.vpc.vpc_id
   vpc_id     = var.vpc_id
