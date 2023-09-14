@@ -11,9 +11,9 @@ resource "aws_instance" "myInstance" {
   subnet_id = var.subnet_id
   vpc_security_group_ids = [aws_security_group.public_instance_ssh.id, aws_security_group.public_instance_http.id]
   user_data              = <<EOF
-                            !/bin/bash
+                            #!/bin/bash
                             yum update -y
-                            yum install apache2
+                            yum install -y httpd
                             systemctl start httpd
                             EOF 
   tags = {
@@ -22,6 +22,8 @@ resource "aws_instance" "myInstance" {
 }
 
 # # https://stackoverflow.com/questions/75797258/how-do-i-reference-a-resource-created-from-different-module-in-my-current-module
+
+# CREATE SECURITY GROUPS
 
 resource "aws_security_group" "public_instance_ssh" {
   name        = "Public-instance-SSH"
@@ -65,6 +67,7 @@ resource "aws_security_group" "public_instance_http" {
 }
 
 
+# ALLOCATE AWS_EIP TO INSTANCE
 
 resource "aws_eip" "demo-eip" {
   instance = aws_instance.myInstance.id
