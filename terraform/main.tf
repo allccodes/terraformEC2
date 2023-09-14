@@ -9,9 +9,6 @@ module "vpc" {
 }
 
 
-output "vpd_id" {
-  vpc_id = module.vpc.vpd_id
-}
 
 
 module "ec2" {
