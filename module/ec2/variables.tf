@@ -10,5 +10,4 @@ variable "inst_type" {
 }
 
 
-variable "vpc_id" {}
 
