@@ -2,7 +2,6 @@
 #   value = data.aws_availability_zones.available.names
 # }
 
-output "public_subnets" {
-  value = aws_subnet.public.*.id
-}
-
+# output "vpc_id" {
+#   value = "${aws_vpc.vpc.id}"
+# }
