@@ -52,8 +52,8 @@ resource "aws_security_group" "public_instance_80" {
   vpc_id     = var.vpc_id
   ingress {
     protocol        = "tcp"
-    from_port       = 22
-    to_port         = 22
+    from_port       = 80
+    to_port         = 80
     cidr_blocks = ["0.0.0.0/0"]
   }
   egress {
