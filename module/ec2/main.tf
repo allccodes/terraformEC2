@@ -66,6 +66,10 @@ resource "aws_security_group" "public_instance_http" {
 
 
 
+resource "aws_eip" "demo-eip" {
+  instance = aws_instance.myInstance.id
+  vpc      = true
+}
 
 
 
