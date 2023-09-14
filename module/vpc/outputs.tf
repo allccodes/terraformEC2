@@ -7,6 +7,3 @@
 # }
 
 
-output "public_subnets" {
-  value = module.vpc.public.*.id
-}
