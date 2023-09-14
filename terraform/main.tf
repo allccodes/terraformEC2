@@ -45,7 +45,7 @@ output "public_subnets" {
 
 module "ec2" {
   source    = "../module/ec2"
-  depends_on = [module.vpc]
+  #depends_on = [module.vpc]
   linux     = "ami-06ca3ca175f37dd66"
   inst_type = "t2.micro"
 }
