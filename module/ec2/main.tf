@@ -26,8 +26,8 @@ resource "aws_security_group" "public_instance_ssh" {
   name        = "Public-instance"
   description = "expose SSH"
   # vpc_id      = module.vpc.vpc_id
-  vpc_id = "${module.vpc.my_vpc_id}"
-
+  vpc_id = var.vpc_id
+  
   ingress {
     protocol        = "tcp"
     from_port       = 22
