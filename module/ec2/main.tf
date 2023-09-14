@@ -4,21 +4,22 @@
 # https://serverfault.com/questions/931609/terraform-how-to-reference-the-subnet-created-in-the-vpc-module
 
 
-# resource "aws_instance" "myInstance" {
-#   ami           = var.linux
-#   instance_type = var.inst_type
-#   subnet_id = module.vpc.public_subnets[0]
-#   vpc_security_group_ids = [aws_security_group.public_instance_ssh.id]
-#   user_data              = <<EOF
-#                             !/bin/bash
-#                             yum update -y
-#                             yum install apache2
-#                             systemctl start httpd
-#                             EOF 
-#   tags = {
-#     Name = "Public Server"
-#   }
-# }
+resource "aws_instance" "myInstance" {
+  ami           = var.linux
+  instance_type = var.inst_type
+  #subnet_id = module.vpc.public_subnets[0]
+  subnet_id = var.subnet_id
+  vpc_security_group_ids = [aws_security_group.public_instance_ssh.id]
+  user_data              = <<EOF
+                            !/bin/bash
+                            yum update -y
+                            yum install apache2
+                            systemctl start httpd
+                            EOF 
+  tags = {
+    Name = "Public Server"
+  }
+}
 
 # # https://stackoverflow.com/questions/75797258/how-do-i-reference-a-resource-created-from-different-module-in-my-current-module
 
