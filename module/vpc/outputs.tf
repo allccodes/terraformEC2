@@ -8,5 +8,5 @@ output "vpc_id" {
 
 
 output "subnet_id" {
-  value = module.vpc.subnet_id
+  value = module.vpc.public_subnets[0]
 }
