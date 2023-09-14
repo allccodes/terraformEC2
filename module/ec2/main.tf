@@ -9,7 +9,7 @@ resource "aws_instance" "myInstance" {
   instance_type = var.inst_type
   #s ubnet_id = module.vpc.public_subnets[0]
   subnet_id = var.subnet_id
-  vpc_security_group_ids = [aws_security_group.public_instance_ssh.id]
+  vpc_security_group_ids = [aws_security_group.public_instance_ssh.id, aws_security_group.public_instance_http.id]
   user_data              = <<EOF
                             !/bin/bash
                             yum update -y
@@ -45,7 +45,7 @@ resource "aws_security_group" "public_instance_ssh" {
 }
 
 
-resource "aws_security_group" "public_instance_80" {
+resource "aws_security_group" "public_instance_http" {
   name        = "Public-instance"
   description = "expose HTTP"
   # vpc_id      = module.vpc.vpc_id
