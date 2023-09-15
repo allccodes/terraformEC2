@@ -1,3 +1,3 @@
-variable "subnets" {
+variable "public_subnets" {
   
 }

@@ -12,7 +12,7 @@ module "vpc" {
 
 module "elb" {
   source    = "../module/elb"
-  subnets   = "${module.vpc.public_subnets}"
+  public_subnets   = "${module.vpc.public_subnets}"
 }
 
 
