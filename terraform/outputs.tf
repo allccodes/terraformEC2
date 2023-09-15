@@ -12,7 +12,8 @@ output "public_subnets" {
   value = module.vpc.public_subnets
 }
 
-output "target_id" {
-  value = module.ec2.target_id
-}
+
+# output "target_id" {
+#   value = module.ec2.target_id
+# }
 

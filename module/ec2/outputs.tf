@@ -1,3 +1,3 @@
 output "target_id" {
-    value = module.ec2.myIntance.id
+    value = module.ec2.myInstance.id
 }
