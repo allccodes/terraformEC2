@@ -11,3 +11,8 @@
 output "public_subnets" {
   value = module.vpc.public_subnets
 }
+
+output "instance_id" {
+    value = module.ec2.instance_id
+}
+
