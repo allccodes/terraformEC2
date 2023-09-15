@@ -3,7 +3,8 @@
 resource "aws_security_group" "elb_sg" {
   name_prefix = "elb-sg-"
   description = "Security group for Elastic Load Balancer"
-  
+  vpc_id     = var.vpc_id
+
 
   ingress {
     protocol        = "tcp"

@@ -13,6 +13,7 @@ module "vpc" {
 module "elb" {
   source    = "../module/elb"
   public_subnets   = "${module.vpc.public_subnets}"
+  vpc_id    = "${module.vpc.vpc_id}"
 }
 
 
