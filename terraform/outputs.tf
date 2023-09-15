@@ -13,7 +13,7 @@ output "public_subnets" {
 }
 
 
-# output "target_id" {
-#   value = module.ec2.target_id
-# }
+output "target_id" {
+  value = module.ec2.target_id
+}
 
