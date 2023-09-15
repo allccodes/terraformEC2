@@ -6,3 +6,8 @@
 # output "subnet_id" {
 #   value = module.vpc.subnet_id
 # }
+
+
+output "public_subnets" {
+  value = module.vpc.public_subnets[*]
+}
