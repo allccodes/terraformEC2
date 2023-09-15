@@ -18,3 +18,7 @@ variable "subnet_id" {
   
 }
 
+
+variable "target_id" {
+  
+}
