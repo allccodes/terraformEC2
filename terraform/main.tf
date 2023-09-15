@@ -10,11 +10,6 @@ module "vpc" {
 
 
 
-module "elb" {
-  source    = "../module/elb"
-  public_subnets   = "${module.vpc.public_subnets}"
-  vpc_id    = "${module.vpc.vpc_id}"
-}
 
 
 
@@ -25,6 +20,15 @@ module "ec2" {
   vpc_id    = "${module.vpc.vpc_id}"
   subnet_id = "${module.vpc.subnet_id}"
 }
+
+
+module "elb" {
+  source    = "../module/elb"
+  public_subnets   = "${module.vpc.public_subnets}"
+  vpc_id    = "${module.vpc.vpc_id}"
+}
+
+
 
 
 # module "s3" {
