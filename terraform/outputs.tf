@@ -12,7 +12,7 @@ output "public_subnets" {
   value = module.vpc.public_subnets
 }
 
-output "instance_id" {
-    value = module.ec2.instance_id
+output "target_id" {
+    value = module.ec2.target_id
 }
 

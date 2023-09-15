@@ -24,6 +24,7 @@ module "elb" {
   source    = "../module/elb"
   public_subnets   = "${module.vpc.public_subnets}"
   vpc_id    = "${module.vpc.vpc_id}"
+  target_id = "${module.ec2.target_id}"
 }
 
 

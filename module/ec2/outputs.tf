@@ -1,3 +1,3 @@
-output "instance_id" {
+output "target_id" {
     value = aws_instance.myInstance.id
 }
