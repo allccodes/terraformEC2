@@ -29,13 +29,21 @@ resource "aws_lb" "alb" {
     subnets            = var.public_subnets
 }
 
-# # Create ALB target group
-# resource "aws_lb_target_group" "alb_tg" {
-#     name     = "tf-example-lb-tg"
-#     port     = 80
-#     protocol = "HTTP"
-#     vpc_id   = aws_vpc.main.id
-# }
+# Create ALB target group
+resource "aws_lb_target_group" "alb_tg" {
+    name     = "tf-example-lb-tg"
+    port     = 80
+    protocol = "HTTP"
+    vpc_id   = var.vpc_id
+}
+
+
+# Create target group attachement
+
+resource "aws_lb_target_group_attachment" "example" {
+  target_group_arn = aws_lb_target_group.alb_tg.arn
+  target_id        = aws_instance.myInstance.id
+}
 
 # # Create NLB
 # resource "aws_lb" "nlb" {
