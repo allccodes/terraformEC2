@@ -1,8 +1,9 @@
 
 
 data "aws_vpc" "example_vpc" {
-  id = "vpc-0982052aa15333394" 
+  id = "vpc-0f7be784bb4acb488"
 }
+
 
 data "aws_subnet_ids" "public_subnets" {
   vpc_id = data.aws_vpc.example_vpc.id
