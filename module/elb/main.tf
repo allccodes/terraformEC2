@@ -1,19 +1,16 @@
 
 
-data "aws_vpc" "example_vpc" {
-  id = "vpc-0f7be784bb4acb488"
+data "aws_subnets" "example" {
+  filter {
+    name   =  "myVPC"
+    values = ["vpc-0f7be784bb4acb488"]
+  }
 }
 
-
-data "aws_subnet" "public_subnets" {
-  vpc_id = "vpc-0f7be784bb4acb488"
-
-    filter {
-    name   = "tag:Name"
-    values = ["public*"]
-  }  
+data "aws_subnet" "example" {
+  for_each = toset(data.aws_subnets.example.ids)
+  id       = each.value
 }
-
 
 
 # Create SG for ALB
