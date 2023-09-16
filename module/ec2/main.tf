@@ -3,6 +3,10 @@
 
 # https://serverfault.com/questions/931609/terraform-how-to-reference-the-subnet-created-in-the-vpc-module
 
+data "aws_vpc" "example_vpc" {
+  vpc_id = "vpc-0982052aa15333394"
+}
+
 # Data source to fetch the subnet ID
 data "aws_subnet" "example_subnet" {
   vpc_id = "vpc-0982052aa15333394"
@@ -32,7 +36,7 @@ resource "aws_instance" "myInstance" {
 resource "aws_security_group" "public_instance_ssh" {
   name        = "Public-instance-SSH"
   description = "expose SSH"
-  vpc_id = data.aws_subnet.example_subnet.id
+  vpc_id = data.aws_vpc.example_vpc.id
   
   ingress {
     protocol        = "tcp"
@@ -52,7 +56,7 @@ resource "aws_security_group" "public_instance_ssh" {
 resource "aws_security_group" "public_instance_http" {
   name        = "Public-instance-HTTP"
   description = "expose HTTP"
-  vpc_id     = data.aws_subnet.example_subnet.id
+  vpc_id     = data.aws_vpc.example_vpc.id
 
   ingress {
     protocol        = "tcp"
