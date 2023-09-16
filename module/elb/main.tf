@@ -18,7 +18,7 @@ data "aws_subnet" "new_example" {
 }
 
 
-Create SG for ALB
+# Create SG for ALB
 resource "aws_security_group" "elb_sg" {
   name_prefix = "elb-sg-"
   description = "Security group for Elastic Load Balancer"
