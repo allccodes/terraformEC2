@@ -84,14 +84,14 @@ resource "aws_security_group" "public_instance_http" {
 
 # CREATE DINAMO TABLE
 
-resource "aws_dynamodb_table" "dynamodb-terraform-state-lock" {
-  name = "terraform-state-lock-dynamo"
-  hash_key = "LockID"
-  read_capacity = 5
-  write_capacity = 5
+# resource "aws_dynamodb_table" "dynamodb-terraform-state-lock" {
+#   name = "terraform-state-lock-dynamo"
+#   hash_key = "LockID"
+#   read_capacity = 5
+#   write_capacity = 5
  
-  attribute {
-    name = "LockID"
-    type = "S"
-  }
-}
+#   attribute {
+#     name = "LockID"
+#     type = "S"
+#   }
+# }
