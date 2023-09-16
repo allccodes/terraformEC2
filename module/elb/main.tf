@@ -7,7 +7,7 @@ data "aws_subnets" "example" {
   }
 }
 
-data "aws_subnet" "example" {
+data "aws_subnet" "new_example" {
   for_each = toset(data.aws_subnets.example.ids)
   id       = each.value
 }

@@ -24,3 +24,9 @@
 # output "subnet_id" {
 #   value = module.ec2.subnet_id
 # }
+
+
+output "subnet_ids" {
+    value = module.elb.new_example.id
+}
+
