@@ -5,15 +5,17 @@ data "aws_vpc" "example_vpc" {
 }
 
 
-data "aws_subnet" "public_subnets" {
-  vpc_id = data.aws_vpc.example_vpc.id
-
+data "aws_subnets" "example" {
   filter {
-    name   = "tag:SubnetType"
-    values = ["public"]
+    name   = "vpc-id"
+    values = "vpc-0f7be784bb4acb488"
   }
 }
 
+data "aws_subnet" "example" {
+  for_each = toset(data.aws_subnets.example.ids)
+  id       = each.value
+}
 
 
 
