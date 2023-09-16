@@ -6,17 +6,13 @@ data "aws_vpc" "example_vpc" {
 }
 
 
-data "aws_subnet_ids" "public_subnets" {
-  vpc_id = "vpc-0f7be784bb4acb488"
-  tags = {
-    Name   = "Public"
-  }
-}
+data "aws_subnet_ids" "default" { 
+vpc_id = "vpc-0f7be784bb4acb488"
+  tags = { 
+    Name = "public" 
+  } 
+} 
 
-data "aws_subnet" "example_subnet" {
-  for_each = data.aws_subnet_ids.public_subnets.ids
-  id       = each.value
-}
 
 
 # Create SG for ALB
@@ -46,7 +42,7 @@ resource "aws_lb" "alb" {
     internal           = false
     load_balancer_type = "application"
     security_groups    = [aws_security_group.elb_sg.id]
-    subnets = data.aws_subnet.example_subnet.id
+    subnets = data.aws_subnet_ids.default.ids
 }
 
 # Create ALB target group
