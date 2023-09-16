@@ -1,7 +1,6 @@
 
 # CREATE INSTANCE
 
-# https://serverfault.com/questions/931609/terraform-how-to-reference-the-subnet-created-in-the-vpc-module
 
 data "aws_vpc" "example_vpc" {
   id = "vpc-0982052aa15333394"
