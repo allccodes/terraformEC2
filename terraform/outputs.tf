@@ -26,7 +26,4 @@
 # }
 
 
-output "subnet_ids" {
-    value = module.elb.new_example.id
-}
 
