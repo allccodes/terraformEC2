@@ -42,7 +42,7 @@ resource "aws_lb" "alb" {
     internal           = false
     load_balancer_type = "application"
     security_groups    = [aws_security_group.elb_sg.id]
-    subnet_ids            = data.aws_subnet_ids.public_subnets.vpc_id
+    subnet_ids = data.aws_subnet_ids.public_subnets.ids
 }
 
 # Create ALB target group
