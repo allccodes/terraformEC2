@@ -13,6 +13,10 @@ data "aws_subnet_ids" "public_subnets" {
   }
 }
 
+# data "aws_subnet" "example" {
+#   for_each = data.aws_subnet_ids.public_subnets.ids
+#   id       = each.value
+# }
 
 
 # Create SG for ALB
