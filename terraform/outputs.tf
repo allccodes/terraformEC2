@@ -17,7 +17,7 @@
 #   value = module.ec2.target_id
 # }
 
-out_put "subnet_id" {
+output "subnet_id" {
     value = module.ec2.vpc_id
 }
 
