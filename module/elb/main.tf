@@ -2,8 +2,8 @@
 
 data "aws_subnets" "example" {
   filter {
-    name   =  "myVPC"
-    values = ["vpc-0f7be784bb4acb488"]
+    name   = "tag:Name"
+    values = ["*public*"]
   }
 }
 
