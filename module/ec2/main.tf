@@ -16,7 +16,7 @@ data "aws_subnet" "example_subnet" {
 
 # Data source to fetch te subnet IDs
 data "subnet_ids" "subnet_ids" {
-  value = aws_subnet.sn[*].id
+  value = aws_subnet.myVPC[*].id
 }
 
 resource "aws_instance" "myInstance" {
