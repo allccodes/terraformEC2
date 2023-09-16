@@ -5,7 +5,7 @@
 
 # Data source to fetch the subnet ID
 data "aws_subnet" "example_subnet" {
-  vpc_id = "myVPC"
+  vpc_id = "vpc-0982052aa15333394"
 }
 
 resource "aws_instance" "myInstance" {
