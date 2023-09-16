@@ -4,7 +4,7 @@
 # https://serverfault.com/questions/931609/terraform-how-to-reference-the-subnet-created-in-the-vpc-module
 
 data "aws_vpc" "example_vpc" {
-  vpc_id = "vpc-0982052aa15333394"
+  id = "vpc-0982052aa15333394"
 }
 
 # Data source to fetch the subnet ID
