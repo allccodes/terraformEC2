@@ -10,6 +10,7 @@ data "aws_vpc" "example_vpc" {
 # Data source to fetch the subnet ID
 data "aws_subnet" "example_subnet" {
   vpc_id = "vpc-0982052aa15333394"
+  cidr_block = "10.0.1.0/24"
 }
 
 resource "aws_instance" "myInstance" {
