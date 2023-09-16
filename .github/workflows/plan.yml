@@ -3,9 +3,8 @@ name: 'Plan'
 on:
   pull_request:
     branches: [ main ]
-    paths:
-      - 'terraform/**'
-      - '.github/**'
+    # paths:
+    #   - 'terraform/**'
   workflow_dispatch:
 
 jobs:
