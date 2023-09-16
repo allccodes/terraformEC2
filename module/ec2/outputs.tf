@@ -9,10 +9,3 @@
 
 
 
-output "vpc_id" {
-  value = data.aws_vpc.example_vpc.id
-}
-
-output "subnet_id" {
-    value = data.aws_subnet.example_subnet.vpc_id
-}

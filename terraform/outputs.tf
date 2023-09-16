@@ -17,18 +17,10 @@
 #   value = module.ec2.target_id
 # }
 
-# output "subnet_id" {
-#     value = module.ec2.vpc_id
-# }
-
-# output "vpc_id" {
-#   value = module.ec2.subnet_id
-# }
-
-output "vpc_id" {
-  value = data.aws_vpc.example_vpc.id
+output "subnet_id" {
+    value = module.ec2.vpc_id
 }
 
-output "subnet_id" {
-    value = data.aws_subnet.example_subnet.vpc_id
+output "vpc_id" {
+  value = module.ec2.subnet_id
 }
