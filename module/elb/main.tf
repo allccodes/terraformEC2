@@ -6,14 +6,14 @@ data "aws_vpc" "example_vpc" {
 }
 
 
-data "aws_subnet_ids" "public_subnets" {
-  for_each = data.aws_vpc.example_vpc.subnets
+# data "aws_subnet_ids" "public_subnets" {
+#   for_each = data.aws_vpc.example_vpc.subnets
 
-  filter {
-    name   = "tag:SubnetType"
-    values = ["public"]
-  }
-}
+#   filter {
+#     name   = "tag:SubnetType"
+#     values = ["public"]
+#   }
+# }
 
 
 
@@ -47,7 +47,7 @@ resource "aws_lb" "alb" {
     load_balancer_type = "application"
     security_groups    = [aws_security_group.elb_sg.id]
     #subnets = data.aws_subnet_ids.default.ids
-    subnet_ids = values(data.aws_subnet_ids.public_subnets)
+    subnets            = [for subnet in aws_subnet.public : subnet.id]
 }
 
 # Create ALB target group
