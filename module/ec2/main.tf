@@ -15,7 +15,7 @@ data "aws_subnet" "example_subnet" {
 }
 
 # Data source to fetch te subnet IDs
-data "subnet_ids" "subnet_ids" {
+data "subnet_ids" "porra" {
   subnet_ids = aws_subnet.myVPC[*].id
 }
 
