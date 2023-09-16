@@ -28,7 +28,7 @@ resource "aws_instance" "myInstance" {
 resource "aws_security_group" "public_instance_ssh" {
   name        = "Public-instance-SSH"
   description = "expose SSH"
-  vpc_id = "${data.aws_vpc.myVPC.id}"
+  vpc_id = aws_vpc.myVPC.id
 
   ingress {
     protocol        = "tcp"
@@ -48,7 +48,7 @@ resource "aws_security_group" "public_instance_ssh" {
 resource "aws_security_group" "public_instance_http" {
   name        = "Public-instance-HTTP"
   description = "expose HTTP"
-  vpc_id = "${data.aws_vpc.myVPC.id}"
+  vpc_id = aws_vpc.myVPC.id
 
   ingress {
     protocol        = "tcp"
