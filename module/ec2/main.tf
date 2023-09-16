@@ -7,8 +7,7 @@
 resource "aws_instance" "myInstance" {
   ami           = var.linux
   instance_type = var.inst_type
-  #subnet_id = module.vpc.public_subnets[0]
-  #subnet_id = var.subnet_id 
+  
   subnet_id = "${data.aws_subnet.myVPC.*.id}"
   
   vpc_security_group_ids = [aws_security_group.public_instance_ssh.id, aws_security_group.public_instance_http.id]
@@ -26,46 +25,44 @@ resource "aws_instance" "myInstance" {
 
 # CREATE SECURITY GROUPS
 
-# resource "aws_security_group" "public_instance_ssh" {
-#   name        = "Public-instance-SSH"
-#   description = "expose SSH"
-#   # vpc_id      = module.vpc.vpc_id
-#   vpc_id     = var.vpc_id
- 
-
-#   ingress {
-#     protocol        = "tcp"
-#     from_port       = 22
-#     to_port         = 22
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-#   egress {
-#     protocol    = "-1"
-#     from_port   = 0
-#     to_port     = 0
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-# }
+resource "aws_security_group" "public_instance_ssh" {
+  name        = "Public-instance-SSH"
+  description = "expose SSH"
+  vpc_id = aws_vpc.myVPC.id
+  
+  ingress {
+    protocol        = "tcp"
+    from_port       = 22
+    to_port         = 22
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {
+    protocol    = "-1"
+    from_port   = 0
+    to_port     = 0
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
 
 
-# resource "aws_security_group" "public_instance_http" {
-#   name        = "Public-instance-HTTP"
-#   description = "expose HTTP"
-#   # vpc_id      = module.vpc.vpc_id
-#   vpc_id     = var.vpc_id
-#   ingress {
-#     protocol        = "tcp"
-#     from_port       = 80
-#     to_port         = 80
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-#   egress {
-#     protocol    = "-1"
-#     from_port   = 0
-#     to_port     = 0
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-# }
+resource "aws_security_group" "public_instance_http" {
+  name        = "Public-instance-HTTP"
+  description = "expose HTTP"
+  vpc_id     = aws_vpc.myVPC.id
+
+  ingress {
+    protocol        = "tcp"
+    from_port       = 80
+    to_port         = 80
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {
+    protocol    = "-1"
+    from_port   = 0
+    to_port     = 0
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
 
 
 # ALLOCATE AWS_EIP TO INSTANCE
