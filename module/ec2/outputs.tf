@@ -21,7 +21,7 @@ output "subnet_id" {
 }
 
 
-output "subnet_ids" {
-  value = data.aws_subnet.porra.subnet_ids
-}
+# output "subnet_ids" {
+#   value = data.aws_subnet.porra.subnet_ids
+# }
 
