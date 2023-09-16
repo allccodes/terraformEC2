@@ -6,15 +6,14 @@ data "aws_vpc" "example_vpc" {
 }
 
 
-data "aws_subnet_ids" "public_subnets" {
-  for_each = data.aws_vpc.example_vpc.subnets
+data "aws_subnet" "public_subnets" {
+  vpc_id = data.aws_vpc.example_vpc.id
 
   filter {
     name   = "tag:SubnetType"
     values = ["public"]
   }
 }
-
 
 
 
