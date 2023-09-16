@@ -2,6 +2,8 @@
 # CREATE INSTANCE
 
 
+
+# Data source to fetch de vpc ID
 data "aws_vpc" "example_vpc" {
   id = "vpc-0f7be784bb4acb488"
 }
@@ -10,6 +12,11 @@ data "aws_vpc" "example_vpc" {
 data "aws_subnet" "example_subnet" {
   vpc_id = "vpc-0f7be784bb4acb488"
   cidr_block = "10.0.1.0/24"
+}
+
+# Data source to fetch te subnet IDs
+data "subnet_ids" "subnet_ids" {
+  value = aws_subnet.sn[*].id
 }
 
 resource "aws_instance" "myInstance" {
