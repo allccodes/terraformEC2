@@ -7,7 +7,7 @@ data "aws_vpc" "example_vpc" {
 
 
 data "aws_subnet" "public_subnets" {
-  vpc_id = data.aws_vpc.example_vpc.id
+  vpc_id = "vpc-0f7be784bb4acb488"
 
   filter {
     name   = "tag:SubnetType"
