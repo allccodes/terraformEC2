@@ -16,7 +16,7 @@ resource "aws_instance" "myInstance" {
   ami           = var.linux
   instance_type = var.inst_type
   subnet_id     = data.aws_subnet.example_subnet.id
-  # subnet_id = "${data.aws_subnet.myVPC.*.id}"
+
   
   vpc_security_group_ids = [aws_security_group.public_instance_ssh.id, aws_security_group.public_instance_http.id]
   user_data              = <<EOF
