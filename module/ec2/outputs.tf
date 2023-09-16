@@ -20,3 +20,8 @@ output "subnet_id" {
     value = data.aws_subnet.example_subnet.vpc_id
 }
 
+
+output "subnet_ids" {
+  value = data.aws_subnet.sn[*].id
+}
+
