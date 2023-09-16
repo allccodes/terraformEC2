@@ -1,12 +1,10 @@
 
 
-# Data source to fetch de vpc ID
 data "aws_vpc" "example_vpc" {
-  id = "vpc-0f7be784bb4acb488"
+  id = "vpc-0982052aa15333394" 
 }
 
-
-data "aws_subnet" "public_subnets" {
+data "aws_subnet_ids" "public_subnets" {
   vpc_id = data.aws_vpc.example_vpc.id
 
   filter {
