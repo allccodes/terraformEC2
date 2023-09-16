@@ -1,8 +1,5 @@
-# data "aws_availability_zones" "available" {
-#   state = "available"
-# }
 
-
+# CREATE VPC
 
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
