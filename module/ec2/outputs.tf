@@ -22,6 +22,6 @@ output "subnet_id" {
 
 
 output "subnet_ids" {
-  value = data.aws_subnet.subnet_ids[*].subnet_ids
+  value = data.aws_subnet.subnet_ids.subnet_ids
 }
 
