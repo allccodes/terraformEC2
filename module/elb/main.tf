@@ -5,7 +5,7 @@ data "aws_vpc" "example_vpc" {
 }
 
 
-data "aws_subnet_ids" "public_subnets" {
+data "aws_subnet" "public_subnets" {
   vpc_id = data.aws_vpc.example_vpc.id
 
   filter {
