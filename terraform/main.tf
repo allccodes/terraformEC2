@@ -16,6 +16,7 @@ provider "aws" {
 #   inst_type = "t2.micro"
 #   vpc_id    = "${module.vpc.vpc_id}"
 #   subnet_id = "${module.vpc.subnet_id}"
+#   depends_on = [module.vpc]
 # }
 
 
@@ -25,40 +26,6 @@ provider "aws" {
 #   vpc_id    = "${module.vpc.vpc_id}"
 #   target_id = "${module.ec2.target_id}"
 # }
-
-
-
-
-# module "s3" {
-#   source    = "../module/s3"
-#   bucket_name = "novobucket001"
-# }
-
-
-
-
-# https://cs.fyi/guide/renaming-things-in-terraform
-# https://hackernoon.com/change-the-name-of-an-aws-s3-bucket-in-terraform-without-breaking-things
-# https://www.bitslovers.com/terraform-data/
-
-
-# Exemplo de ouput a partir de um modulo
-# Em main.tf do modulo fica o data
-# Em outputs.tf do modulo columas por exe: value = data.aws_availability_zones.available.names
-
-
-# module "vpc" {
-#    source  = "../module/vpc"
-#    aws_region = "us-east-1"
-#    #azs = data.aws_availability_zones.az_available.names
-# }
-
-# output "list_of_az" {
-#   value = module.vpc.list_of_az
-# }
-
-
-
 
 
 
