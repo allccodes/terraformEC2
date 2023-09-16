@@ -7,7 +7,7 @@ data "aws_vpc" "example_vpc" {
 
 
 data "aws_subnet" "public_subnets" {
-  vpc_id = "vpc-0f7be784bb4acb488"
+  vpc_id = data.aws_vpc.example_vpc.id
 
   filter {
     name   = "tag:SubnetType"
@@ -19,25 +19,25 @@ data "aws_subnet" "public_subnets" {
 
 
 # Create SG for ALB
-resource "aws_security_group" "elb_sg" {
-  name_prefix = "elb-sg-"
-  description = "Security group for Elastic Load Balancer"
-  vpc_id = data.aws_vpc.example_vpc.id
+# resource "aws_security_group" "elb_sg" {
+#   name_prefix = "elb-sg-"
+#   description = "Security group for Elastic Load Balancer"
+#   vpc_id = data.aws_vpc.example_vpc.id
 
 
-  ingress {
-    protocol        = "tcp"
-    from_port       = 80
-    to_port         = 80
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-  egress {
-    protocol    = "-1"
-    from_port   = 0
-    to_port     = 0
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
+#   ingress {
+#     protocol        = "tcp"
+#     from_port       = 80
+#     to_port         = 80
+#     cidr_blocks = ["0.0.0.0/0"]
+#   }
+#   egress {
+#     protocol    = "-1"
+#     from_port   = 0
+#     to_port     = 0
+#     cidr_blocks = ["0.0.0.0/0"]
+#   }
+# }
 
 # # Create ALB
 # resource "aws_lb" "alb" {
