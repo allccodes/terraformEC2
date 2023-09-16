@@ -1,10 +1,10 @@
 name: 'Plan'
 
 on:
-  pull_request:
-    branches: [ main ]
-    paths:
-      - 'terraform/**'
+  push:
+    branches: [ fix ]
+    # paths:
+    #   - 'terraform/**'
   workflow_dispatch:
 
 jobs:

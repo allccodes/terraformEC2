@@ -3,12 +3,21 @@
 
 # https://serverfault.com/questions/931609/terraform-how-to-reference-the-subnet-created-in-the-vpc-module
 
+data "aws_vpc" "example_vpc" {
+  id = "vpc-0982052aa15333394"
+}
+
+# Data source to fetch the subnet ID
+data "aws_subnet" "example_subnet" {
+  vpc_id = "vpc-0982052aa15333394"
+  cidr_block = "10.0.1.0/24"
+}
 
 resource "aws_instance" "myInstance" {
   ami           = var.linux
   instance_type = var.inst_type
-  
-  subnet_id = "${data.aws_subnet.myVPC.*.id}"
+  subnet_id     = data.aws_subnet.example_subnet.id
+  # subnet_id = "${data.aws_subnet.myVPC.*.id}"
   
   vpc_security_group_ids = [aws_security_group.public_instance_ssh.id, aws_security_group.public_instance_http.id]
   user_data              = <<EOF
@@ -28,7 +37,7 @@ resource "aws_instance" "myInstance" {
 resource "aws_security_group" "public_instance_ssh" {
   name        = "Public-instance-SSH"
   description = "expose SSH"
-  vpc_id = aws_vpc.myVPC.id
+  vpc_id = data.aws_vpc.example_vpc.id
 
   ingress {
     protocol        = "tcp"
@@ -48,7 +57,7 @@ resource "aws_security_group" "public_instance_ssh" {
 resource "aws_security_group" "public_instance_http" {
   name        = "Public-instance-HTTP"
   description = "expose HTTP"
-  vpc_id = aws_vpc.myVPC.id
+  vpc_id     = data.aws_vpc.example_vpc.id
 
   ingress {
     protocol        = "tcp"
@@ -76,14 +85,14 @@ resource "aws_security_group" "public_instance_http" {
 
 # CREATE DINAMO TABLE
 
-resource "aws_dynamodb_table" "dynamodb-terraform-state-lock" {
-  name = "terraform-state-lock-dynamo"
-  hash_key = "LockID"
-  read_capacity = 5
-  write_capacity = 5
+# resource "aws_dynamodb_table" "dynamodb-terraform-state-lock" {
+#   name = "terraform-state-lock-dynamo"
+#   hash_key = "LockID"
+#   read_capacity = 5
+#   write_capacity = 5
  
-  attribute {
-    name = "LockID"
-    type = "S"
-  }
-}
+#   attribute {
+#     name = "LockID"
+#     type = "S"
+#   }
+# }
