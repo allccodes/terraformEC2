@@ -1,7 +1,4 @@
 
-# CREATE INSTANCE
-
-
 
 # Data source to fetch de vpc ID
 data "aws_vpc" "example_vpc" {
@@ -14,6 +11,8 @@ data "aws_subnet" "example_subnet" {
   cidr_block = "10.0.1.0/24"
 }
 
+
+# CREATE INSTANCE
 
 resource "aws_instance" "myInstance" {
   ami           = var.linux
@@ -53,7 +52,6 @@ resource "aws_security_group" "public_instance_ssh" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
-
 
 resource "aws_security_group" "public_instance_http" {
   name        = "Public-instance-HTTP"

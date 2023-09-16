@@ -5,6 +5,7 @@ data "aws_vpc" "example_vpc" {
   id = "vpc-0f7be784bb4acb488"
 }
 
+# Data source to fetch the PUBLIC subnets
 data "aws_subnets" "example" {
   filter {
     name   = "tag:Name"

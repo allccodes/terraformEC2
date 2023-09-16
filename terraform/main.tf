@@ -9,7 +9,6 @@ module "vpc" {
 }
 
 
-
 module "ec2" {
   source    = "../module/ec2"
   linux     = "ami-06ca3ca175f37dd66"
@@ -20,6 +19,7 @@ module "ec2" {
 
 module "elb" {
   source    = "../module/elb"
+  depends_on = [module.vpc]
 }
 
 
