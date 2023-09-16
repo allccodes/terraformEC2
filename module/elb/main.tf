@@ -1,9 +1,25 @@
 
+
+# Data source to fetch de vpc ID
+data "aws_vpc" "example_vpc" {
+  id = "vpc-0f7be784bb4acb488"
+}
+
+
+data "aws_subnet_ids" "public_subnets" {
+  vpc_id = "vpc-0f7be784bb4acb488"
+  tags = {
+    Name   = "Public"
+  }
+}
+
+
+
 # Create SG for ALB
 resource "aws_security_group" "elb_sg" {
   name_prefix = "elb-sg-"
   description = "Security group for Elastic Load Balancer"
-  vpc_id     = var.vpc_id
+  vpc_id = data.aws_vpc.example_vpc.id
 
 
   ingress {
@@ -26,7 +42,7 @@ resource "aws_lb" "alb" {
     internal           = false
     load_balancer_type = "application"
     security_groups    = [aws_security_group.elb_sg.id]
-    subnets            = var.public_subnets
+    subnets            = data.aws_subnet_ids.public_subnets.vpc_id
 }
 
 # Create ALB target group
@@ -34,15 +50,15 @@ resource "aws_lb_target_group" "alb_tg" {
     name     = "tf-example-lb-tg"
     port     = 80
     protocol = "HTTP"
-    vpc_id   = var.vpc_id
+    vpc_id = data.aws_vpc.example_vpc.id
 }
 
 
-# Create target group attachement
+# # Create target group attachement
 
-resource "aws_lb_target_group_attachment" "example" {
-  target_group_arn = aws_lb_target_group.alb_tg.arn
-  target_id        = var.target_id
-  port             = 80
-}
+# resource "aws_lb_target_group_attachment" "example" {
+#   target_group_arn = aws_lb_target_group.alb_tg.arn
+#   target_id        = var.target_id
+#   port             = 80
+# }
 
