@@ -38,7 +38,7 @@ resource "aws_security_group" "public_instance_ssh" {
   name        = "Public-instance-SSH"
   description = "expose SSH"
   vpc_id = data.aws_vpc.example_vpc.id
-  
+
   ingress {
     protocol        = "tcp"
     from_port       = 22
