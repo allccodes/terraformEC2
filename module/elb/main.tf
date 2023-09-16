@@ -13,10 +13,10 @@ data "aws_subnet_ids" "public_subnets" {
   }
 }
 
-# data "aws_subnet" "example" {
-#   for_each = data.aws_subnet_ids.public_subnets.ids
-#   id       = each.value
-# }
+data "aws_subnet" "example_subnet" {
+  for_each = data.aws_subnet_ids.public_subnets.ids
+  id       = each.value
+}
 
 
 # Create SG for ALB
@@ -46,7 +46,7 @@ resource "aws_lb" "alb" {
     internal           = false
     load_balancer_type = "application"
     security_groups    = [aws_security_group.elb_sg.id]
-    subnet_ids = data.aws_subnet_ids.public_subnets.ids
+    subnet_ids = data.aws_subnet_ids.example_subnet.id
 }
 
 # Create ALB target group
