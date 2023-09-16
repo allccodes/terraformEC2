@@ -14,10 +14,6 @@ data "aws_subnet" "example_subnet" {
   cidr_block = "10.0.1.0/24"
 }
 
-# # Data source to fetch te subnet IDs
-# data "subnet_ids" "porra" {
-#   subnet_ids = aws_subnet.myVPC[*].id
-# }
 
 resource "aws_instance" "myInstance" {
   ami           = var.linux
