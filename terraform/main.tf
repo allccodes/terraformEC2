@@ -4,9 +4,9 @@ provider "aws" {
 
 
 
-# module "vpc" {
-#   source    = "../module/vpc"
-# }
+module "vpc" {
+   source    = "../module/vpc"
+}
 
 
 
