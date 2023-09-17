@@ -14,7 +14,7 @@ data "aws_subnet" "example_subnet" {
 
 
 data "aws_instance" "example_instance" {
-  instance_id = "i-0ecea2274900f3b9e"
+  instance_id = "i-0c3d945c1316563d8"
 }
 
 
