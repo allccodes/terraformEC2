@@ -13,6 +13,12 @@ data "aws_subnet" "example_subnet" {
 }
 
 
+data "aws_instance" "example_instance" {
+  instance_id = "i-0ecea2274900f3b9e"
+}
+
+
+
 # CREATE INSTANCE
 
 resource "aws_instance" "myInstance" {
@@ -76,10 +82,10 @@ resource "aws_security_group" "public_instance_http" {
 
 # ALLOCATE AWS_EIP TO INSTANCE
 
-# resource "aws_eip" "demo-eip" {
-#   instance = aws_instance.myInstance.id
-#   domain = "vpc"
-# }
+resource "aws_eip" "demo-eip" {
+  instance = data.aws_instance.example_instance.id
+  domain = "vpc"
+}
 
 
 

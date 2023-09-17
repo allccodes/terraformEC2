@@ -95,3 +95,12 @@ resource "aws_lb_listener" "test-http-listener" {
     }
   }
 }
+
+
+
+# ALLOCATE AWS_EIP TO ELB
+
+# resource "aws_eip" "demo-eip" {
+#   instance = aws_instance.myInstance.id
+#   domain = "vpc"
+# }
