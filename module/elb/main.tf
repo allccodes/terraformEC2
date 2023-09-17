@@ -46,6 +46,18 @@ resource "aws_security_group" "elb_sg" {
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
 # Create ALB
 resource "aws_lb" "alb" {
     name               = "test-alb-tf"
@@ -98,9 +110,3 @@ resource "aws_lb_listener" "test-http-listener" {
 
 
 
-# ALLOCATE AWS_EIP TO ELB
-
-# resource "aws_eip" "demo-eip" {
-#   instance = aws_instance.myInstance.id
-#   domain = "vpc"
-# }
