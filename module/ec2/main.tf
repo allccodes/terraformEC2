@@ -34,8 +34,8 @@ data "aws_subnets" "example" {
 
 resource "aws_instance" "app" {
   for_each      = toset(data.aws_subnets.example.ids)
-  ami           = var.ami
-  instance_type = "t2.micro"
+  ami           = var.linux
+  instance_type = var.inst_type
   subnet_id     = each.value
 }
 
