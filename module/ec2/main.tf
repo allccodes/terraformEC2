@@ -72,45 +72,45 @@ resource "aws_instance" "app" {
 # }
 
 
-# # CREATE SECURITY GROUPS
+# CREATE SECURITY GROUPS
 
-# resource "aws_security_group" "public_instance_ssh" {
-#   name        = "Public-instance-SSH"
-#   description = "expose SSH"
-#   vpc_id = data.aws_vpc.example_vpc.id
+resource "aws_security_group" "public_instance_ssh" {
+  name        = "Public-instance-SSH"
+  description = "expose SSH"
+  vpc_id = data.aws_vpc.example_vpc.id
 
-#   ingress {
-#     protocol        = "tcp"
-#     from_port       = 22
-#     to_port         = 22
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-#   egress {
-#     protocol    = "-1"
-#     from_port   = 0
-#     to_port     = 0
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-# }
+  ingress {
+    protocol        = "tcp"
+    from_port       = 22
+    to_port         = 22
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {
+    protocol    = "-1"
+    from_port   = 0
+    to_port     = 0
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
 
-# resource "aws_security_group" "public_instance_http" {
-#   name        = "Public-instance-HTTP"
-#   description = "expose HTTP"
-#   vpc_id     = data.aws_vpc.example_vpc.id
+resource "aws_security_group" "public_instance_http" {
+  name        = "Public-instance-HTTP"
+  description = "expose HTTP"
+  vpc_id     = data.aws_vpc.example_vpc.id
 
-#   ingress {
-#     protocol        = "tcp"
-#     from_port       = 80
-#     to_port         = 80
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-#   egress {
-#     protocol    = "-1"
-#     from_port   = 0
-#     to_port     = 0
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-# }
+  ingress {
+    protocol        = "tcp"
+    from_port       = 80
+    to_port         = 80
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {
+    protocol    = "-1"
+    from_port   = 0
+    to_port     = 0
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
 
 
 # # # ALLOCATE AWS_EIP TO INSTANCE
