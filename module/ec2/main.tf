@@ -2,13 +2,14 @@
 
 # Data source to fetch de vpc ID
 data "aws_vpc" "example_vpc" {
-  id = "vpc-0f7be784bb4acb488"
+  id = "vpc-04beae6fe5e39cf1b"
 }
 
 # Data source to fetch the subnet ID
 data "aws_subnet" "example_subnet" {
-  vpc_id = "vpc-0f7be784bb4acb488"
-  cidr_block = "10.0.1.0/24"
+  vpc_id = "vpc-04beae6fe5e39cf1b"
+  #cidr_block = "10.0.1.0/24"
+  cidr_block = "10.0.0.0/16"
 }
 
 
