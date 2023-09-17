@@ -19,6 +19,12 @@ data "aws_subnet" "new_example" {
 }
 
 
+data "aws_instance" "example_instance" {
+  instance_id = "xxxx"
+}
+
+
+
 # Create SG for ALB
 resource "aws_security_group" "elb_sg" {
   name_prefix = "elb-sg-"
@@ -59,11 +65,11 @@ resource "aws_lb_target_group" "alb_tg" {
 }
 
 
-# # Create target group attachement
+# Create target group attachement
 
-# resource "aws_lb_target_group_attachment" "example" {
-#   target_group_arn = aws_lb_target_group.alb_tg.arn
-#   target_id        = var.target_id
-#   port             = 80
-# }
+resource "aws_lb_target_group_attachment" "example" {
+  target_group_arn = aws_lb_target_group.alb_tg.arn
+  target_id        = var.target_id
+  port             = 80
+}
 
