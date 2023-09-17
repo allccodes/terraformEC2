@@ -37,6 +37,16 @@ resource "aws_instance" "app" {
   ami           = var.linux
   instance_type = var.inst_type
   subnet_id     = each.value
+  vpc_security_group_ids = [aws_security_group.public_instance_ssh.id, aws_security_group.public_instance_http.id]
+  user_data              = <<EOF
+                            #!/bin/bash
+                            yum update -y
+                            yum install -y httpd
+                            systemctl start httpd
+                            EOF 
+  tags = {
+    Name = "Public Server"
+  }
 }
 
 
