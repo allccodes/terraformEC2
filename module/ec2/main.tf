@@ -32,6 +32,13 @@ data "aws_subnets" "example" {
 }
 
 
+
+
+
+
+
+
+
 # CREATE INSTANCE
 
 # resource "aws_instance" "app" {
