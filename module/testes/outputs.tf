@@ -1,3 +1,3 @@
 output "subnet_ids" {
-  value = data.aws_subnets.example[0]
+  value = data.aws_subnets.example.*.ids[0]
 }
