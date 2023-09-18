@@ -27,3 +27,6 @@
 
 
 
+output "subnet_ids" {
+  value = module.testes.example
+}
