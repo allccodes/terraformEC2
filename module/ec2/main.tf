@@ -33,10 +33,11 @@ data "aws_subnets" "example" {
 
 
 resource "aws_instance" "app" {
-  for_each      = toset(data.aws_subnets.example.ids)
+  #for_each      = toset(data.aws_subnets.example.ids)
   ami           = var.linux
   instance_type = var.inst_type
-  subnet_id     = each.value
+  #subnet_id     = each.value
+  subnet_id = "vpc-0f90824179182398c"
   vpc_security_group_ids = [aws_security_group.public_instance_ssh.id, aws_security_group.public_instance_http.id]
   user_data = <<EOF
     #!/bin/bash
