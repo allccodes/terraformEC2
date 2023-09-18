@@ -23,13 +23,13 @@ data "aws_vpc" "example_vpc" {
   id = "vpc-0f90824179182398c"
 }
 
-# # Data source to fetch the PUBLIC subnets
-# data "aws_subnets" "example" {
-#   filter {
-#     name   = "tag:Name"
-#     values = ["*public*"]
-#   }
-# }
+# Data source to fetch the PUBLIC subnets
+data "aws_subnets" "example" {
+  filter {
+    name   = "tag:Name"
+    values = ["*public*"]
+  }
+}
 
 
 # CREATE INSTANCE
