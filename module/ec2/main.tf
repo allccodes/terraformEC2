@@ -13,23 +13,23 @@
 # }
 
 
-data "aws_instance" "example_instance" {
-  instance_id = "i-0e491f7aa4add9a37"
-}
+# data "aws_instance" "example_instance" {
+#   instance_id = "i-0e491f7aa4add9a37"
+# }
 
 
-# Data source to fetch de vpc ID
-data "aws_vpc" "example_vpc" {
-  id = "vpc-04beae6fe5e39cf1b"
-}
+# # Data source to fetch de vpc ID
+# data "aws_vpc" "example_vpc" {
+#   id = "vpc-04beae6fe5e39cf1b"
+# }
 
-# Data source to fetch the PUBLIC subnets
-data "aws_subnets" "example" {
-  filter {
-    name   = "tag:Name"
-    values = ["*public*"]
-  }
-}
+# # Data source to fetch the PUBLIC subnets
+# data "aws_subnets" "example" {
+#   filter {
+#     name   = "tag:Name"
+#     values = ["*public*"]
+#   }
+# }
 
 
 resource "aws_instance" "app" {
