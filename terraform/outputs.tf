@@ -28,5 +28,5 @@
 
 
 output "subnet_ids" {
-  value = module.testes.example
+  value = module.testes.subnet_ids
 }
