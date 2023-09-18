@@ -39,13 +39,13 @@ resource "aws_instance" "app" {
   #subnet_id     = each.value
   subnet_id = "subnet-04bbf5d09d6c1cc7c"
   vpc_security_group_ids = [aws_security_group.public_instance_ssh.id, aws_security_group.public_instance_http.id]
-  user_data = <<EOF
-    #!/bin/bash
-    sudo su
-    yum update -y
-    yum install -y httpd
-    systemctl start httpd
-  EOF 
+  user_data = <<-EOF
+              #!/bin/bash
+              yum update -y
+              yum install -y httpd
+              systemctl start httpd
+              systemctl enable httpd
+              EOF
   tags = {
     Name = "Public Server"
   }
