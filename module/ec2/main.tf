@@ -37,7 +37,7 @@ resource "aws_instance" "app" {
   ami           = var.linux
   instance_type = var.inst_type
   #subnet_id     = each.value
-  subnet_id = data.aws_vpc.example_vpc.id
+  subnet_id = "subnet-04bbf5d09d6c1cc7c"
   vpc_security_group_ids = [aws_security_group.public_instance_ssh.id, aws_security_group.public_instance_http.id]
   user_data = <<EOF
     #!/bin/bash
