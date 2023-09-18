@@ -1,5 +1,5 @@
 output "subnet_ids" {
-  value = data.aws_subnet.example.*.id
+  value = data.aws_subnet.example.*.ids
 }
 
 
