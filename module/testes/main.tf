@@ -22,7 +22,7 @@ resource "aws_instance" "app" {
   instance_type = var.inst_type
   subnet_id = "${data.aws_subnets.example[count.index]}"
   #subnet_id     = each.value
-  vpc_security_group_ids = [aws_security_group.public_instance_ssh.id, aws_security_group.public_instance_http.id]
+  #vpc_security_group_ids = [aws_security_group.public_instance_ssh.id, aws_security_group.public_instance_http.id]
   user_data = <<-EOF
               #!/bin/bash
               yum update -y
@@ -34,6 +34,7 @@ resource "aws_instance" "app" {
     Name = "Public Server"
   }
 }
+
 
 
 
