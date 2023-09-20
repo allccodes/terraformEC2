@@ -20,7 +20,7 @@ resource "aws_instance" "app" {
   #for_each      = toset(data.aws_subnets.example.ids)
   ami           = var.linux
   instance_type = var.inst_type
-  subnet_id = element(data.aws_subnet_ids.example.ids, count.index)
+  subnet_id = element(data.aws_subnets.example.ids, count.index)
 
   #subnet_id     = each.value
   #vpc_security_group_ids = [aws_security_group.public_instance_ssh.id, aws_security_group.public_instance_http.id]
