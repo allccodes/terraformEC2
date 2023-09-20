@@ -10,8 +10,8 @@ provider "aws" {
 
 module "testes" {
   source    = "../module/testes"
-  #linux     = "ami-06ca3ca175f37dd66"
-  #inst_type = "t2.micro"
+  linux     = "ami-06ca3ca175f37dd66"
+  inst_type = "t2.micro"
 }
 
 
