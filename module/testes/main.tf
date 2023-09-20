@@ -16,7 +16,7 @@ data "aws_subnets" "example" {
 # CREATE INSTANCE
 
 resource "aws_instance" "app" {
-  count = length(data.aws_subnet_ids.example.ids)
+  count = length(data.aws_subnets.example.ids)
   #for_each      = toset(data.aws_subnets.example.ids)
   ami           = var.linux
   instance_type = var.inst_type
