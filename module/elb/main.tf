@@ -1,10 +1,4 @@
 
-
-# Data source to fetch de vpc ID
-data "aws_vpc" "example_vpc" {
-  id = "vpc-0e15aa3b827b2d6d7"
-}
-
 # Data source to fetch the PUBLIC subnets
 data "aws_subnets" "example" {
   filter {
@@ -13,24 +7,13 @@ data "aws_subnets" "example" {
   }
 }
 
-data "aws_subnet" "new_example" {
-  for_each = toset(data.aws_subnets.example.ids)
-  id       = each.value
-}
-
-
-data "aws_instance" "example_instance" {
-  instance_id = "i-01a0804eb0e5c7478"
-}
-
 
 
 # Create SG for ALB
 resource "aws_security_group" "elb_sg" {
   name_prefix = "elb-sg-"
   description = "Security group for Elastic Load Balancer"
-  vpc_id = data.aws_vpc.example_vpc.id
-
+  vpd_id = var.vpc_id
 
   ingress {
     protocol        = "tcp"
@@ -48,23 +31,13 @@ resource "aws_security_group" "elb_sg" {
 
 
 
-
-
-
-
-
-
-
-
-
-
 # Create ALB
 resource "aws_lb" "alb" {
     name               = "test-alb-tf"
     internal           = false
     load_balancer_type = "application"
     security_groups    = [aws_security_group.elb_sg.id]
-    subnets = [for subnet in data.aws_subnet.new_example : subnet.id]
+    subnets = data.aws_subnets.example.ids
     
 }
 
@@ -73,12 +46,11 @@ resource "aws_lb_target_group" "alb_tg" {
     name     = "tf-example-lb-tg"
     port     = 80
     protocol = "HTTP"
-    vpc_id = data.aws_vpc.example_vpc.id
+    vpc_id = var.vpc_id
 }
 
 
-# Create target group attachement
-
+# Create target group attachment
 resource "aws_lb_target_group_attachment" "example" {
   target_group_arn = aws_lb_target_group.alb_tg.arn
   target_id        = data.aws_instance.example_instance.id
@@ -87,7 +59,7 @@ resource "aws_lb_target_group_attachment" "example" {
 
 
 
-
+#  Create ALB listener
 resource "aws_lb_listener" "test-http-listener" {
   load_balancer_arn = aws_lb.alb.arn
   port              = "80"
@@ -100,10 +72,6 @@ resource "aws_lb_listener" "test-http-listener" {
         arn    = aws_lb_target_group.alb_tg.arn
         weight = 250
       }
-      # target_group {
-      #   arn    = aws_lb_target_group.test-small.arn
-      #   weight = 80
-      # }
     }
   }
 }

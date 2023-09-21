@@ -9,3 +9,12 @@ variable "inst_type" {
   default = "t2.micro"
 }
 
+
+variable "instance_number" {
+  type = number
+}
+
+
+variable "vpc_id" {
+  
+}

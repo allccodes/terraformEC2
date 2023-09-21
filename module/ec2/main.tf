@@ -19,9 +19,9 @@
 
 
 # # Data source to fetch de vpc ID
-data "aws_vpc" "example_vpc" {
-  id = "vpc-0e15aa3b827b2d6d7"
-}
+# data "aws_vpc" "example_vpc" {
+#   id = var.vpc_id
+# }
 
 # # Data source to fetch the PUBLIC subnets
 # data "aws_subnets" "example" {
@@ -39,13 +39,13 @@ data "aws_vpc" "example_vpc" {
 # CREATE INSTANCE
 
 resource "aws_instance" "myInstance" {
-  count = 1
+  count = var.instance_number
   # for_each      = toset(data.aws_subnets.example.ids)
   ami           = var.linux
   instance_type = var.inst_type
 
   # subnet_id   = each.value
-  subnet_id     = "subnet-0e2a98fa2c3171e19"
+  subnet_id     = var.subnet_id
 
   vpc_security_group_ids = [aws_security_group.public_instance_ssh.id, aws_security_group.public_instance_http.id]
   user_data = <<-EOF

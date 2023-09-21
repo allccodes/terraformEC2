@@ -5,16 +5,15 @@ provider "aws" {
 
 
 
-
-
-
-# module "vpc" {
-#    source    = "../module/vpc"
-# }
+module "vpc" {
+   source    = "../module/vpc"
+}
 
 
 # module "ec2" {
 #   source    = "../module/ec2"
+#   instance_number = 1
+#   subnet_id = "vpc-*"
 #   linux     = "ami-06ca3ca175f37dd66"
 #   inst_type = "t2.micro"
 #   depends_on = [module.vpc]
