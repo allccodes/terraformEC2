@@ -36,13 +36,10 @@ data "aws_vpc" "example_vpc" {
 
 
 
-
-
-
 # CREATE INSTANCE
 
 resource "aws_instance" "myInstance" {
-  count = 2
+  count = 1
   # for_each      = toset(data.aws_subnets.example.ids)
   ami           = var.linux
   instance_type = var.inst_type

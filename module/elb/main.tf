@@ -2,7 +2,7 @@
 
 # Data source to fetch de vpc ID
 data "aws_vpc" "example_vpc" {
-  id = "vpc-04beae6fe5e39cf1b"
+  id = "vpc-0e15aa3b827b2d6d7"
 }
 
 # Data source to fetch the PUBLIC subnets
@@ -19,9 +19,9 @@ data "aws_subnet" "new_example" {
 }
 
 
-data "aws_instance" "example_instance" {
-  instance_id = "i-0ecea2274900f3b9e"
-}
+# data "aws_instance" "example_instance" {
+#   instance_id = "i-0ecea2274900f3b9e"
+# }
 
 
 
