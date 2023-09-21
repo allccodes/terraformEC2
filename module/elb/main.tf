@@ -52,6 +52,13 @@ resource "aws_lb_target_group" "alb_tg" {
     port     = 80
     protocol = "HTTP"
     vpc_id = var.vpc_id
+
+    health_check {
+      matcher = "200,301,302"
+      path    = "/"
+      interval = 120
+      timeout = 30
+  }
 }
 
 
