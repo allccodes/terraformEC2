@@ -2,31 +2,15 @@ provider "aws" {
   region = "us-east-1"
 }
 
-######################################
-# TESTES
-###############################
-
-
-
-# module "testes" {
-#   source    = "../module/testes"
-#   linux     = "ami-06ca3ca175f37dd66"
-#   inst_type = "t2.micro"
-# }
 
 
 
 
 
 
-
-#########################################
-# PROD
-##########################################
-
-# module "vpc" {
-#    source    = "../module/vpc"
-# }
+module "vpc" {
+   source    = "../module/vpc"
+}
 
 
 # module "ec2" {

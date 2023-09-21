@@ -13,23 +13,23 @@
 # }
 
 
-data "aws_instance" "example_instance" {
-  instance_id = "i-03ae668d00fca0e30"
-}
+# data "aws_instance" "example_instance" {
+#   instance_id = "i-03ae668d00fca0e30"
+# }
 
 
-# Data source to fetch de vpc ID
-data "aws_vpc" "example_vpc" {
-  id = "vpc-0f90824179182398c"
-}
+# # Data source to fetch de vpc ID
+# data "aws_vpc" "example_vpc" {
+#   id = "vpc-0f90824179182398c"
+# }
 
-# Data source to fetch the PUBLIC subnets
-data "aws_subnets" "example" {
-  filter {
-    name   = "tag:Name"
-    values = ["*public*"]
-  }
-}
+# # Data source to fetch the PUBLIC subnets
+# data "aws_subnets" "example" {
+#   filter {
+#     name   = "tag:Name"
+#     values = ["*public*"]
+#   }
+# }
 
 
 
@@ -42,11 +42,12 @@ data "aws_subnets" "example" {
 # CREATE INSTANCE
 
 resource "aws_instance" "myInstance" {
-  
-  for_each      = toset(data.aws_subnets.example.ids)
+  count = length(data.aws_subnets.example.ids)
+  # for_each      = toset(data.aws_subnets.example.ids)
   ami           = var.linux
   instance_type = var.inst_type
-  subnet_id     = each.value
+  subnet_id     = data.aws_subnets.example.ids[count.index]
+  # subnet_id     = each.value
   vpc_security_group_ids = [aws_security_group.public_instance_ssh.id, aws_security_group.public_instance_http.id]
   user_data = <<-EOF
               #!/bin/bash
@@ -56,7 +57,7 @@ resource "aws_instance" "myInstance" {
               systemctl enable httpd
               EOF
   tags = {
-    Name = "Public Server"
+    Name = "Public Server-${count.index}"
   }
 }
 
