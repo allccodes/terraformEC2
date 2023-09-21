@@ -13,7 +13,7 @@ data "aws_subnets" "example" {
 resource "aws_security_group" "elb_sg" {
   name_prefix = "elb-sg-"
   description = "Security group for Elastic Load Balancer"
-  vpd_id = var.vpc_id
+  vpc_id = var.vpc_id
 
   ingress {
     protocol        = "tcp"
