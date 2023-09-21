@@ -13,9 +13,9 @@
 # }
 
 
-# data "aws_instance" "example_instance" {
-#   instance_id = "i-03ae668d00fca0e30"
-# }
+data "aws_instance" "example_instance" {
+  instance_id = "i-04a4128b9a925b3db"
+}
 
 
 # # Data source to fetch de vpc ID
@@ -107,7 +107,7 @@ resource "aws_security_group" "public_instance_http" {
 # # # # ALLOCATE AWS_EIP TO INSTANCE
 
 resource "aws_eip" "demo-eip" {
-  instance = aws_instance.myInstance[count.index]
+  instance = data.aws_instance.example_instance.id
   domain = "vpc"
 }
 
