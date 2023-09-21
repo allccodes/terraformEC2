@@ -9,7 +9,7 @@ data "aws_subnets" "example" {
 
 
 data "aws_instance" "example_instance" {
-  id  = "i-04a4128b9a925b3db"
+  instance_id  = "i-04a4128b9a925b3db"
 }
 
 
@@ -58,7 +58,7 @@ resource "aws_lb_target_group" "alb_tg" {
 # Create target group attachment
 resource "aws_lb_target_group_attachment" "example" {
   target_group_arn = aws_lb_target_group.alb_tg.arn
-  target_id        = data.aws_instance.example_instance.id
+  target_id        = data.aws_instance.example_instance.instance_id
   port             = 80
 }
 
