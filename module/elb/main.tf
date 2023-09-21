@@ -8,6 +8,11 @@ data "aws_subnets" "example" {
 }
 
 
+data "aws_instance" "example_instance" {
+  id  = "i-04a4128b9a925b3db"
+}
+
+
 
 # Create SG for ALB
 resource "aws_security_group" "elb_sg" {
