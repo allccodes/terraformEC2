@@ -19,9 +19,9 @@ data "aws_subnet" "new_example" {
 }
 
 
-# data "aws_instance" "example_instance" {
-#   instance_id = "i-0ecea2274900f3b9e"
-# }
+data "aws_instance" "example_instance" {
+  instance_id = "i-01a0804eb0e5c7478"
+}
 
 
 
