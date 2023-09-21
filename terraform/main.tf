@@ -13,7 +13,8 @@ module "vpc" {
 module "ec2" {
   source    = "../module/ec2"
   instance_number = 1
-  subnet_id = "vpc-0027b709979b1392e"
+  vpc_id = "vpc-0027b709979b1392e"
+  subnet_id = "subnet-05f9de789de5841b9"
   linux     = "ami-06ca3ca175f37dd66"
   inst_type = "t2.micro"
   depends_on = [module.vpc]
