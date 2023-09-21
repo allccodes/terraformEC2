@@ -19,6 +19,6 @@ variable "vpc_id" {
   
 }
 
-varible "subnet_id" {
-  
+variable "subnet_id" {
+
 }
