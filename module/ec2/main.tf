@@ -23,7 +23,7 @@
 #   id = var.vpc_id
 # }
 
-# # Data source to fetch the PUBLIC subnets
+# Data source to fetch the PUBLIC subnets
 # data "aws_subnets" "example" {
 #   filter {
 #     name   = "tag:Name"
@@ -68,7 +68,7 @@ resource "aws_instance" "myInstance" {
 resource "aws_security_group" "public_instance_ssh" {
   name        = "Public-instance-SSH"
   description = "expose SSH"
-  vpc_id = data.aws_vpc.example_vpc.id
+  vpc_id = var.vpc_id
 
   ingress {
     protocol        = "tcp"
@@ -87,7 +87,7 @@ resource "aws_security_group" "public_instance_ssh" {
 resource "aws_security_group" "public_instance_http" {
   name        = "Public-instance-HTTP"
   description = "expose HTTP"
-  vpc_id     = data.aws_vpc.example_vpc.id
+  vpc_id     = var.vpc_id
 
   ingress {
     protocol        = "tcp"
