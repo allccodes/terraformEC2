@@ -20,10 +20,10 @@ module "vpc" {
 # }
 
 
-# module "elb" {
-#   source    = "../module/elb"
-#   depends_on = [module.ec2]
-# }
+module "elb" {
+  source    = "../module/elb"
+  depends_on = [module.ec2]
+}
 
 
 
