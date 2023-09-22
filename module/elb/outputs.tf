@@ -1,3 +1,3 @@
 output "running_instances" {
-    value = aws_instances.running_instances.ids
+    value = [for instance in data.aws_instances.running_instances.ids : instance]
 }
