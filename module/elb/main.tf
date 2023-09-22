@@ -8,9 +8,9 @@ data "aws_subnets" "example" {
 }
 
 
-data "aws_instance" "example_instance" {
-  instance_id  = "i-04a4128b9a925b3db"
-}
+# data "aws_instance" "example_instance" {
+#   instance_id  = "i-04a4128b9a925b3db"
+# }
 
 
 data "aws_instances" "test" {
