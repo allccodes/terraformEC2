@@ -20,11 +20,10 @@ module "ec2" {
 }
 
 
-# module "elb" {
-#   source    = "../module/elb"
-#   vpc_id = "vpc-0027b709979b1392e"
-#   depends_on = [module.vpc]
-# }
+module "elb" {
+  source    = "../module/elb"
+  depends_on = [module.vpc]
+}
 
 
 
