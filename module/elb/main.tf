@@ -70,9 +70,9 @@ data "aws_subnets" "example" {
 
 # # Create target group attachment
 # resource "aws_lb_target_group_attachment" "example" {
+#   count       = length(data.aws_instances.running_instances.ids)
 #   target_group_arn = aws_lb_target_group.alb_tg.arn
-#   #target_id        = data.aws_instance.example_instance.instance_id
-#   tardet_id = data.aws_instances.running_instances.ids[*]
+#   target_id   = data.aws_instances.running_instances.ids[count.index]
 #   port             = 80
 # }
 
