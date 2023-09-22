@@ -13,9 +13,9 @@ data "aws_subnets" "example" {
 # }
 
 
-data "aws_instances" "running_instances" {
-  instance_state_names = ["running"]
-}
+# data "aws_instances" "running_instances" {
+#   instance_state_names = ["running"]
+# }
 
 
 
