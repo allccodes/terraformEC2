@@ -15,10 +15,6 @@ variable "instance_number" {
 }
 
 
-# variable "vpc_id" {
-  
-# }
-
 variable "subnet_id" {
 
 }
