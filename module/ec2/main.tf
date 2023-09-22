@@ -35,7 +35,12 @@
 
 
 
-
+data "aws_vpc" "myVPC" {
+  filter {
+    name = "tag:Name"
+    values = ["myVPC"]
+  }
+}
 
 
 # CREATE INSTANCE
@@ -70,7 +75,7 @@ resource "aws_instance" "myInstance" {
 resource "aws_security_group" "public_instance_ssh" {
   name        = "Public-instance-SSH"
   description = "expose SSH"
-  vpc_id = var.vpc_id
+  vpc_id = data.aws_vpc.myVPC.id
 
   ingress {
     protocol        = "tcp"
@@ -89,7 +94,7 @@ resource "aws_security_group" "public_instance_ssh" {
 resource "aws_security_group" "public_instance_http" {
   name        = "Public-instance-HTTP"
   description = "expose HTTP"
-  vpc_id     = var.vpc_id
+  vpc_id     = data.aws_vpc.myVPC.id
 
   ingress {
     protocol        = "tcp"
