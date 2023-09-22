@@ -18,6 +18,8 @@ data "aws_instance" "example_instance" {
 }
 
 
+
+
 # # Data source to fetch de vpc ID
 # data "aws_vpc" "example_vpc" {
 #   id = var.vpc_id

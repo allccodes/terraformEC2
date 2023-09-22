@@ -13,6 +13,12 @@ data "aws_instance" "example_instance" {
 }
 
 
+data "aws_instances" "test" {
+  instance_state_names = ["running"]
+}
+
+
+
 
 # Create SG for ALB
 resource "aws_security_group" "elb_sg" {
@@ -65,7 +71,8 @@ resource "aws_lb_target_group" "alb_tg" {
 # Create target group attachment
 resource "aws_lb_target_group_attachment" "example" {
   target_group_arn = aws_lb_target_group.alb_tg.arn
-  target_id        = data.aws_instance.example_instance.instance_id
+  #target_id        = data.aws_instance.example_instance.instance_id
+  tardet_id = data.aws_instances.running_instances.ids[*]
   port             = 80
 }
 
