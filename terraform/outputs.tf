@@ -30,3 +30,7 @@
 # output "subnet_ids" {
 #     value = module.testes.subnet_ids
 # }
+
+output "running_instances" {
+    value = module.elb.running_instances
+}
