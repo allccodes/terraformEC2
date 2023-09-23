@@ -17,7 +17,7 @@ resource "aws_instance" "myInstance" {
   instance_type = var.inst_type
 
   subnet_id     = var.subnet_id
-  vpc_security_group_ids = [aws_security_group.public_instance_ssh.id, aws_security_group.public_instance_http.id]
+  vpc_security_group_ids = [aws_security_group.public_instance_http.id]
 
   tags = {
     Name = "Public Server-${count.index}"
@@ -27,9 +27,9 @@ resource "aws_instance" "myInstance" {
 
 # CREATE SECURITY GROUPS
 
-resource "aws_security_group" "public_instance_ssh" {
-  name        = "Public-instance-SSH"
-  description = "expose SSH"
+resource "aws_security_group" "public_instance_http" {
+  name        = "Public-instance-HTTP"
+  description = "expose SSH and HTTP"
   vpc_id = data.aws_vpc.myVPC.id
 
   ingress {
