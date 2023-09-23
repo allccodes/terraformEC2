@@ -1,5 +1,6 @@
 
-# Data source to fetch the PUBLIC SUBNETS
+# DATA SOURCE TO FETCH THE PUBLIC SUBNETS
+
 data "aws_subnets" "mySubnets" {
   filter {
     name   = "tag:Name"
@@ -7,7 +8,8 @@ data "aws_subnets" "mySubnets" {
   }
 }
 
-# Data source to fetch my VPC
+# DATA SOURCE TO FETCH MY VPC
+
 data "aws_vpc" "myVPC" {
   filter {
     name = "tag:Name"
@@ -15,14 +17,16 @@ data "aws_vpc" "myVPC" {
   }
 }
 
-# Data source to fetch my RUNNING INSTANCES
+# DATA SOURCE TO FETCH MY RUNNING INSTANCES
+
 data "aws_instances" "running_instances" {
   instance_state_names = ["running"]
 }
 
 
 
-# Create SG for ALB
+# CREATE SG FOR ALB
+
 resource "aws_security_group" "elb_sg" {
   name_prefix = "elb-sg-"
   description = "Security group for Elastic Load Balancer"
@@ -44,7 +48,8 @@ resource "aws_security_group" "elb_sg" {
 
 
 
-# Create ALB
+# CREATE ALB
+
 resource "aws_lb" "alb" {
     name               = "test-alb-tf"
     internal           = false
@@ -54,7 +59,8 @@ resource "aws_lb" "alb" {
     
 }
 
-# Create ALB target group
+# CREATE ALB TARGET GROUP
+
 resource "aws_lb_target_group" "alb_tg" {
     name     = "tf-example-lb-tg"
     port     = 80
@@ -69,10 +75,10 @@ resource "aws_lb_target_group" "alb_tg" {
   }
 }
 
+# CREATE TARGET GROUP ATTACHMENT
 
-# Create target group attachment
-  resource "aws_lb_target_group_attachment" "example" {
-    for_each         = toset(data.aws_instances.running_instances.ids)
+resource "aws_lb_target_group_attachment" "example" {
+  for_each         = toset(data.aws_instances.running_instances.ids)
     target_group_arn = aws_lb_target_group.alb_tg.arn
     target_id        = each.value
     port             = 80
@@ -80,7 +86,8 @@ resource "aws_lb_target_group" "alb_tg" {
 
 
 
-#  Create ALB listener
+#  CREATE ALB LISTENER
+
 resource "aws_lb_listener" "test-http-listener" {
   load_balancer_arn = aws_lb.alb.arn
   port              = "80"

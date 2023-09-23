@@ -1,39 +1,5 @@
 
-
-# # Data source to fetch de vpc ID
-# data "aws_vpc" "example_vpc" {
-#   id = "subnet-0e2a98fa2c3171e19"
-# }
-
-# # Data source to fetch the subnet ID
-# data "aws_subnet" "example_subnet" {
-#   vpc_id = "vpc-04beae6fe5e39cf1b"
-#   cidr_block = "10.0.1.0/24"
-#   #cidr_block = "10.0.0.0/24"
-# }
-
-
-# data "aws_instance" "example_instance" {
-#   instance_id = "i-04a4128b9a925b3db"
-# }
-
-
-
-
-# # Data source to fetch de vpc ID
-# data "aws_vpc" "example_vpc" {
-#   id = var.vpc_id
-# }
-
-# Data source to fetch the PUBLIC subnets
-# data "aws_subnets" "example" {
-#   filter {
-#     name   = "tag:Name"
-#     values = ["*public*"]
-#   }
-# }
-
-
+# DATA SOURCE TO FETCH MY VPC
 
 data "aws_vpc" "myVPC" {
   filter {
@@ -46,28 +12,17 @@ data "aws_vpc" "myVPC" {
 # CREATE INSTANCE
 
 resource "aws_instance" "myInstance" {
-  count = var.instance_number
-  # for_each      = toset(data.aws_subnets.example.ids)
-  ami           = var.linux
+  count         = var.instance_number
+  ami           = var.nginx
   instance_type = var.inst_type
 
-  # subnet_id   = each.value
   subnet_id     = var.subnet_id
-
   vpc_security_group_ids = [aws_security_group.public_instance_ssh.id, aws_security_group.public_instance_http.id]
-  user_data = <<-EOF
-              #!/bin/bash
-              yum update -y
-              yum install -y httpd
-              systemctl start httpd
-              systemctl enable httpd
-              EOF
+
   tags = {
     Name = "Public Server-${count.index}"
   }
 }
-
-
 
 
 # CREATE SECURITY GROUPS
@@ -89,14 +44,8 @@ resource "aws_security_group" "public_instance_ssh" {
     to_port     = 0
     cidr_blocks = ["0.0.0.0/0"]
   }
-}
 
-resource "aws_security_group" "public_instance_http" {
-  name        = "Public-instance-HTTP"
-  description = "expose HTTP"
-  vpc_id     = data.aws_vpc.myVPC.id
-
-  ingress {
+   ingress {
     protocol        = "tcp"
     from_port       = 80
     to_port         = 80
@@ -108,15 +57,29 @@ resource "aws_security_group" "public_instance_http" {
     to_port     = 0
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  
 }
 
+# resource "aws_security_group" "public_instance_http" {
+#   name        = "Public-instance-HTTP"
+#   description = "expose HTTP"
+#   vpc_id     = data.aws_vpc.myVPC.id
 
-# # # # ALLOCATE AWS_EIP TO INSTANCE
-
-# resource "aws_eip" "demo-eip" {
-#   instance = data.aws_instance.example_instance.id
-#   domain = "vpc"
+#   ingress {
+#     protocol        = "tcp"
+#     from_port       = 80
+#     to_port         = 80
+#     cidr_blocks = ["0.0.0.0/0"]
+#   }
+#   egress {
+#     protocol    = "-1"
+#     from_port   = 0
+#     to_port     = 0
+#     cidr_blocks = ["0.0.0.0/0"]
+#   }
 # }
+
 
 
 

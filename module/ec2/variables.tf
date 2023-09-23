@@ -1,6 +1,6 @@
-variable "linux" {
+variable "nginx" {
   type    = string
-  default = "ami-06ca3ca175f37dd66"
+  default = "ami-0ea75b80e2f0fc442"
 }
 
 
@@ -16,5 +16,5 @@ variable "instance_number" {
 
 
 variable "subnet_id" {
-
+  type = number
 }
