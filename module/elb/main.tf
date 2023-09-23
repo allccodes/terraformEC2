@@ -23,6 +23,16 @@ data "aws_instances" "running_instances" {
   instance_state_names = ["running"]
 }
 
+locals {
+  instance_ids = tomap({
+    "instance1" = data.aws_instances.running_instances.ids[0]
+    "instance2" = data.aws_instances.running_instances.ids[1]
+    # Add more instances as needed
+  })
+}
+
+
+
 
 
 # CREATE SG FOR ALB
@@ -78,7 +88,8 @@ resource "aws_lb_target_group" "alb_tg" {
 # CREATE TARGET GROUP ATTACHMENT
 
 resource "aws_lb_target_group_attachment" "example" {
-  for_each         = toset(data.aws_instances.running_instances.ids)
+  #for_each         = toset(data.aws_instances.running_instances.ids)
+  for_each = local.instance_ids
     target_group_arn = aws_lb_target_group.alb_tg.arn
     target_id        = each.value
     port             = 80
