@@ -34,8 +34,8 @@ resource "aws_security_group" "public_instance_http" {
 
   ingress {
     protocol        = "tcp"
-    from_port       = 22
-    to_port         = 22
+    from_port       = var.ingress1
+    to_port         = var.ingress2
     cidr_blocks = ["0.0.0.0/0"]
   }
   egress {
@@ -45,10 +45,10 @@ resource "aws_security_group" "public_instance_http" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-   ingress {
+  ingress {
     protocol        = "tcp"
-    from_port       = 80
-    to_port         = 80
+    from_port       = var.ingress2
+    to_port         = var.ingress2
     cidr_blocks = ["0.0.0.0/0"]
   }
   egress {
@@ -61,38 +61,6 @@ resource "aws_security_group" "public_instance_http" {
   
 }
 
-# resource "aws_security_group" "public_instance_http" {
-#   name        = "Public-instance-HTTP"
-#   description = "expose HTTP"
-#   vpc_id     = data.aws_vpc.myVPC.id
-
-#   ingress {
-#     protocol        = "tcp"
-#     from_port       = 80
-#     to_port         = 80
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-#   egress {
-#     protocol    = "-1"
-#     from_port   = 0
-#     to_port     = 0
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-# }
 
 
 
-
-# CREATE DINAMO TABLE
-
-# resource "aws_dynamodb_table" "dynamodb-terraform-state-lock" {
-#   name = "terraform-state-lock-dynamo"
-#   hash_key = "LockID"
-#   read_capacity = 5
-#   write_capacity = 5
- 
-#   attribute {
-#     name = "LockID"
-#     type = "S"
-#   }
-# }

@@ -12,8 +12,9 @@ module "vpc" {
 
 module "ec2" {
   source    = "../module/ec2"
-  instance_number = 2
+  instance_number = 1
   subnet_id = "subnet-02507c6cb9e739f80"
+  ingress2 = 80
   depends_on = [module.vpc]
 }
 
