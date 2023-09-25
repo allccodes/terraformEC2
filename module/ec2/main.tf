@@ -11,7 +11,7 @@ data "aws_vpc" "my_vpc" {
 
 # DATA SOURCE TO FETCH THE PUBLIC SUBNETS
 
-data "aws_subnets_ids" "my_subnets" {
+data "aws_subnets" "my_subnets" {
   filter {
     name   = "tag:Name"
     values = ["*public*"]
@@ -27,7 +27,7 @@ resource "aws_instance" "my_instance" {
   ami           = var.ami_id
   instance_type = var.inst_type
 
-  subnet_id     = element(data.aws_subnet_ids.my_subnets.ids, 0)
+  subnet_id     = element(data.aws_subnet.my_subnets, 0)
   vpc_security_group_ids = [aws_security_group.public_instance_http.id]
 
   tags = {
