@@ -13,7 +13,7 @@ data "aws_vpc" "my_vpc" {
 
 data "aws_subnet" "subnet_select" {
   # Specify the VPC ID where the subnet is located
-  vpc_id = aws_vpc.my_vpc.id  # Replace with your VPC ID
+  vpc_id = data.aws_vpc.my_vpc.id  # Replace with your VPC ID
 
   # Filter the subnet by its "Name" tag with the desired value
   filter {
