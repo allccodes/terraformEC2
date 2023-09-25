@@ -11,12 +11,12 @@ data "aws_subnets" "mySubnets" {
 
 # DATA SOURCE TO FETCH MY VPC
 
-# data "aws_vpc" "myVPC" {
-#   filter {
-#     name = "tag:Name"
-#     values = ["myVPC"]
-#   }
-# }
+data "aws_vpc" "myVPC" {
+  filter {
+    name = "tag:Name"
+    values = [var.vpc_name]
+  }
+}
 
 
 
@@ -43,8 +43,7 @@ locals {
 resource "aws_security_group" "elb_sg" {
   name_prefix = "elb-sg-"
   description = "Security group for Elastic Load Balancer"
-  #vpc_id = data.aws_vpc.myVPC.id
-  vpc_id = var.vpc_name.id
+  vpc_id = data.aws_vpc.myVPC.id
 
   ingress {
     protocol        = "tcp"
@@ -79,8 +78,8 @@ resource "aws_lb_target_group" "alb_tg" {
     name     = "tf-example-lb-tg"
     port     = 80
     protocol = "HTTP"
-    #vpc_id = data.aws_vpc.myVPC.id
-    vpc_id = var.vpc_name.id
+    vpc_id = data.aws_vpc.myVPC.id
+    
 
     health_check {
       matcher = "200,301,302"
