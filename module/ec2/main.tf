@@ -9,6 +9,19 @@ data "aws_vpc" "my_vpc" {
 }
 
 
+
+
+data "aws_subnet" "my_subnets" {
+  filter {
+    name   = "tag:Name"
+    values = ["*public*"]
+  }
+}
+
+
+
+
+
 # CREATE INSTANCE
 
 resource "aws_instance" "my_instance" {
@@ -16,7 +29,7 @@ resource "aws_instance" "my_instance" {
   ami           = var.ami_id
   instance_type = var.inst_type
 
-  subnet_id     = var.subnet_id
+  subnet_id     = data.aws_subnet.my_subnets.id[0]
   vpc_security_group_ids = [aws_security_group.public_instance_http.id]
 
   tags = {
