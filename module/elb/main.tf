@@ -1,7 +1,7 @@
 
 # DATA SOURCE TO FETCH THE PUBLIC SUBNETS
 
-data "aws_subnets" "mySubnets" {
+data "aws_subnets" "my_subnets" {
   filter {
     name   = "tag:Name"
     values = ["*public*"]
@@ -66,7 +66,7 @@ resource "aws_lb" "alb" {
     internal           = false
     load_balancer_type = "application"
     security_groups    = [aws_security_group.elb_sg.id]
-    subnets = data.aws_subnets.mySubnets.ids
+    subnets = data.aws_subnets.my_subnets.ids
     
 }
 
