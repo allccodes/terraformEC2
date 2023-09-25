@@ -4,7 +4,7 @@ variable "vpc_name" {
 }
 
 
-variable "nginx" {
+variable "my_ami" {
   type    = string
   default = "ami-0ea75b80e2f0fc442"
 }

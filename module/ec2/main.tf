@@ -13,7 +13,7 @@ data "aws_vpc" "my_vpc" {
 
 resource "aws_instance" "my_instance" {
   count         = var.instance_number
-  ami           = var.nginx
+  ami           = var.ami_id
   instance_type = var.inst_type
 
   subnet_id     = var.subnet_id
