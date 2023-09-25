@@ -18,7 +18,7 @@ data "aws_subnet" "subnet_select" {
   # Filter the subnet by its "Name" tag with the desired value
   filter {
     name   = "tag:Name"
-    values = ["*public-us-east-1a*"]
+    values = ["myVPC-public-us-east-1a"]
   }
 }
 
