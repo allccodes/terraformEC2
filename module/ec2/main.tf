@@ -30,7 +30,7 @@ resource "aws_instance" "my_instance" {
 resource "aws_security_group" "public_instance_http" {
   name        = "Public-instance-HTTP"
   description = "expose SSH and HTTP"
-  vpc_id = data.aws_vpc.myVPC.id
+  vpc_id = data.aws_vpc.my_vpc.id
   
 
   ingress {
