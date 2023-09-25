@@ -1,7 +1,7 @@
 
 # DATA SOURCE TO FETCH MY VPC
 
-data "aws_vpc" "myVPC" {
+data "aws_vpc" "my_vpc" {
   filter {
     name = "tag:Name"
     values = [var.vpc_name]
@@ -11,7 +11,7 @@ data "aws_vpc" "myVPC" {
 
 # CREATE INSTANCE
 
-resource "aws_instance" "myInstance" {
+resource "aws_instance" "my_instance" {
   count         = var.instance_number
   ami           = var.nginx
   instance_type = var.inst_type
