@@ -22,12 +22,18 @@ data "aws_subnets" "my_subnets" {
 
 # CREATE INSTANCE
 
+locals {
+  subnet_number = var.subnet_number 
+}
+
+
 resource "aws_instance" "my_instance" {
   count         = var.instance_number
   ami           = var.ami_id
   instance_type = var.inst_type
 
-  subnet_id = length(data.aws_subnets.my_subnets.ids) > 0 ? element(data.aws_subnets.my_subnets.ids, 0) : null
+
+  subnet_id = length(data.aws_subnets.my_subnets.ids) > 0 ? element(data.aws_subnets.my_subnets.ids, local.subnet_number) : null
   vpc_security_group_ids = [aws_security_group.public_instance_http.id]
 
   tags = {

@@ -34,3 +34,9 @@ variable "ingress2" {
 variable "subnet_id" {
   type = string
 }
+
+
+variable "subnet_number" {
+  type = number
+  default = 0
+}
