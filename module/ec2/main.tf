@@ -11,7 +11,7 @@ data "aws_vpc" "my_vpc" {
 
 
 
-data "aws_subnet" "my_subnets" {
+data "aws_subnets" "my_subnets" {
   filter {
     name   = "tag:Name"
     values = ["*public*"]
