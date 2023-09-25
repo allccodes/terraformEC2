@@ -1,12 +1,12 @@
 
 # DATA SOURCE TO FETCH MY VPC
 
-# data "aws_vpc" "myVPC" {
-#   filter {
-#     name = "tag:Name"
-#     values = ["myVPC"]
-#   }
-# }
+data "aws_vpc" "myVPC" {
+  filter {
+    name = "tag:Name"
+    values = [var.var.vpc_name]
+  }
+}
 
 
 # CREATE INSTANCE
@@ -30,9 +30,8 @@ resource "aws_instance" "myInstance" {
 resource "aws_security_group" "public_instance_http" {
   name        = "Public-instance-HTTP"
   description = "expose SSH and HTTP"
-  # vpc_id = data.aws_vpc.myVPC.id
-  vpc_id = var.vpc_name.id
-
+  vpc_id = data.aws_vpc.myVPC.id
+  
 
   ingress {
     protocol        = "tcp"
