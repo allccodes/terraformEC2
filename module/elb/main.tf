@@ -32,7 +32,6 @@ locals {
   instance_ids = tomap({
     "instance1" = data.aws_instances.running_instances.ids[0]
     "instance2" = data.aws_instances.running_instances.ids[1]
-    # Add more instances as needed
   })
 }
 
