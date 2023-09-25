@@ -1,5 +1,5 @@
 
 variable "vpc_name" {
-    string = string
+    type = string
     default = "myVPC"
 }
