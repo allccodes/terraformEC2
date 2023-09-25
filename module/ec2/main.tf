@@ -11,13 +11,16 @@ data "aws_vpc" "my_vpc" {
 
 # DATA SOURCE TO FETCH THE PUBLIC SUBNETS
 
-data "aws_subnet_ids" "my_subnets" {
+data "aws_subnet" "subnet_select" {
+  # Specify the VPC ID where the subnet is located
+  vpc_id = aws_vpc.my_vpc.id  # Replace with your VPC ID
+
+  # Filter the subnet by its "Name" tag with the desired value
   filter {
     name   = "tag:Name"
-    values = ["*public*"]
+    values = ["*public-us-east-1a*"]
   }
 }
-
 
 
 # CREATE INSTANCE
@@ -27,7 +30,7 @@ resource "aws_instance" "my_instance" {
   ami           = var.ami_id
   instance_type = var.inst_type
 
-  subnet_id     = element(data.aws_subnet_ids.my_subnets, 0)
+  subnet_id     = data.aws_subnet.subnet_selected.id
   vpc_security_group_ids = [aws_security_group.public_instance_http.id]
 
   tags = {
