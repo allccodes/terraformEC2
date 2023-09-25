@@ -8,20 +8,25 @@ data "aws_subnets" "mySubnets" {
   }
 }
 
+
 # DATA SOURCE TO FETCH MY VPC
 
-data "aws_vpc" "myVPC" {
-  filter {
-    name = "tag:Name"
-    values = ["myVPC"]
-  }
-}
+# data "aws_vpc" "myVPC" {
+#   filter {
+#     name = "tag:Name"
+#     values = ["myVPC"]
+#   }
+# }
+
+
+
 
 # DATA SOURCE TO FETCH MY RUNNING INSTANCES
 
 data "aws_instances" "running_instances" {
   instance_state_names = ["running"]
 }
+
 
 locals {
   instance_ids = tomap({
@@ -33,14 +38,13 @@ locals {
 
 
 
-
-
 # CREATE SG FOR ALB
 
 resource "aws_security_group" "elb_sg" {
   name_prefix = "elb-sg-"
   description = "Security group for Elastic Load Balancer"
-  vpc_id = data.aws_vpc.myVPC.id
+  #vpc_id = data.aws_vpc.myVPC.id
+  vpc_id = var.vpc_name.id
 
   ingress {
     protocol        = "tcp"
@@ -57,7 +61,6 @@ resource "aws_security_group" "elb_sg" {
 }
 
 
-
 # CREATE ALB
 
 resource "aws_lb" "alb" {
@@ -69,13 +72,15 @@ resource "aws_lb" "alb" {
     
 }
 
+
 # CREATE ALB TARGET GROUP
 
 resource "aws_lb_target_group" "alb_tg" {
     name     = "tf-example-lb-tg"
     port     = 80
     protocol = "HTTP"
-    vpc_id = data.aws_vpc.myVPC.id
+    #vpc_id = data.aws_vpc.myVPC.id
+    vpc_id = var.vpc_name.id
 
     health_check {
       matcher = "200,301,302"
@@ -84,6 +89,7 @@ resource "aws_lb_target_group" "alb_tg" {
       timeout = 30
   }
 }
+
 
 # CREATE TARGET GROUP ATTACHMENT
 
@@ -94,7 +100,6 @@ resource "aws_lb_target_group_attachment" "example" {
     target_id        = each.value
     port             = 80
 }
-
 
 
 #  CREATE ALB LISTENER

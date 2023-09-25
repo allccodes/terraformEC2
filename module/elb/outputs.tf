@@ -1,3 +1,6 @@
-# output "running_instances" {
-#     value = [for instance in data.aws_instances.running_instances.ids : instance]
-# }
+
+# OUTPUT LOAD BALANCER PUBLIC DNS
+
+output "load_balancer_public_ip" {
+  value = aws_lb.alb.load_balancer_dns_name
+}

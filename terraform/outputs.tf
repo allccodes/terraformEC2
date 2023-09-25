@@ -1,36 +1,6 @@
-# output "vpc_id" {
-#     value = module.vpc.vpc_id
-# }
 
+# OUTPUT LOAD BALANCER PUBLIC DNS
 
-# output "subnet_id" {
-#   value = module.vpc.subnet_id
-# }
-
-
-# output "public_subnets" {
-#   value = module.vpc.public_subnets
-# }
-
-
-# output "target_id" {
-#   value = module.ec2.target_id
-# }
-
-# output "vpc_id" {
-#     value = module.ec2.vpc_id
-# }
-
-# output "subnet_id" {
-#   value = module.ec2.subnet_id
-# }
-
-
-
-# output "subnet_ids" {
-#     value = module.testes.subnet_ids
-# }
-
-# output "running_instances" {
-#     value = module.elb.running_instances
-# }
+output "load_balancer_public_ip" {
+  value = module.elb.load_balancer_public_ip
+}

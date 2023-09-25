@@ -1,3 +1,9 @@
+variable "vpc_name" {
+  type = string
+  default = "myVPC"
+}
+
+
 variable "nginx" {
   type    = string
   default = "ami-0ea75b80e2f0fc442"
