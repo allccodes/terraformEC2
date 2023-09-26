@@ -5,10 +5,10 @@ provider "aws" {
 
 
 
-module "vpc" {
-   source    = "../module/vpc"
-   vpc_name = "myVPC"
-}
+# module "vpc" {
+#    source    = "../module/vpc"
+#    vpc_name = "myVPC"
+# }
 
 
 # module "ec2" {
