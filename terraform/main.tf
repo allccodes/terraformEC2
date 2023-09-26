@@ -17,7 +17,7 @@ module "ec2" {
   ami_id = "ami-092b99a36151a072e"
   subnet_id = "subnet-02507c6cb9e739f80"
   vpc_name = "myVPC"
-  subnet_type = "public"
+  subnet_type = "private"
   subnet_number = 1
   ingress2 = 80
   depends_on = [module.vpc]
