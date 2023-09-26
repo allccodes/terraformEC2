@@ -68,7 +68,7 @@ resource "aws_instance" "my_instance_private" {
   vpc_security_group_ids = [aws_security_group.private_instance_ssh.id]
 
   tags = {
-    Name = "Public Server-${count.index}"
+    Name = "Private Server-${count.index}"
   }
 }
 
