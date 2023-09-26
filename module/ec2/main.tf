@@ -113,6 +113,7 @@ resource "aws_security_group" "public_instance_http" {
 
 
 resource "aws_security_group" "private_instance_ssh" {
+  count = var.subnet_type == "private" ? 1 : 0
   name        = "Private-instance-SSH"
   description = "expose SSH"
   vpc_id = data.aws_vpc.my_vpc.id
