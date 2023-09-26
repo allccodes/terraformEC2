@@ -26,6 +26,7 @@ variable "ingress1" {
   default = 22
 }
 
+
 variable "ingress2" {
   type = number
 }
@@ -39,4 +40,10 @@ variable "subnet_id" {
 variable "subnet_number" {
   type = number
   default = 0
+}
+
+
+variable "subnet_type" {
+  type = string
+  default = "public"
 }
