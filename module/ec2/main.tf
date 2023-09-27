@@ -40,7 +40,6 @@ locals {
 # CREATE PUBLIC INSTANCE
 
 resource "aws_instance" "my_instance_public" {
-  #count         = var.instance_number
   count = var.subnet_type == "public" ? var.instance_number : 0
   ami           = var.ami_id
   instance_type = var.inst_type
@@ -59,7 +58,6 @@ resource "aws_instance" "my_instance_public" {
 
 resource "aws_instance" "my_instance_private" {
   count = var.subnet_type == "private" ? var.instance_number : 0
-  # count         = var.instance_number
   ami           = var.ami_id
   instance_type = var.inst_type
 
@@ -111,7 +109,6 @@ resource "aws_security_group" "public_instance_http" {
 
 # CREATE PRIVATE SECURITY GROUPS
 
-
 resource "aws_security_group" "private_instance_ssh" {
   count = var.subnet_type == "private" ? 1 : 0
   name        = "Private-instance-SSH"
@@ -132,3 +129,6 @@ resource "aws_security_group" "private_instance_ssh" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+
+# https://dilani-alwis.medium.com/terraform-tips-tricks-de8bc46dde13
