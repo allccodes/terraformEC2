@@ -5,10 +5,10 @@ provider "aws" {
 
 
 
-module "vpc" {
-   source    = "../module/vpc"
-   vpc_name = "myVPC"
-}
+# module "vpc" {
+#    source    = "../module/vpc"
+#    vpc_name = "myVPC"
+# }
 
 
 # module "ec2" {
@@ -24,11 +24,11 @@ module "vpc" {
 # }
 
 
-module "elb" {
-  source    = "../module/elb"
-  vpc_name = "myVPC"
-  depends_on = [module.vpc, module.ec2]
-}
+# module "elb" {
+#   source    = "../module/elb"
+#   vpc_name = "myVPC"
+#   depends_on = [module.vpc, module.ec2]
+# }
 
 
 
