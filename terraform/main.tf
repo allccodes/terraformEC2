@@ -27,7 +27,7 @@ module "ec2" {
 module "elb" {
   source    = "../module/elb"
   vpc_name = "myVPC"
-  #depends_on = [module.vpc, module.ec2]
+  depends_on = [module.vpc, module.ec2]
 }
 
 
