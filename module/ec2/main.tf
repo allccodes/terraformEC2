@@ -63,7 +63,7 @@ resource "aws_instance" "my_instance_private" {
 
 
   subnet_id = length(data.aws_subnets.private_subnets.ids) > 0 ? element(data.aws_subnets.private_subnets.ids, local.subnet_number) : null
-  vpc_security_group_ids = [aws_security_group.private_instance_ssh.id]
+  vpc_security_group_ids = [aws_security_group.private_instance_ssh[count.index]]
 
   tags = {
     Name = "Private Server-${count.index}"
