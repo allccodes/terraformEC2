@@ -16,10 +16,10 @@ jobs:
     runs-on: ubuntu-latest
     environment: plan
 
-    # defaults:
-    #   run:
-    #     shell: bash
-    #     working-directory: 'terraform/**'
+    defaults:
+      run:
+        shell: bash
+        working-directory: 'terraform/dev'
 
     steps:
       - name: Checkout
