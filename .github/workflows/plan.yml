@@ -10,7 +10,7 @@ on:
       dir:
           description: 'Directory with resources to be plan'
           required: true
-          default: 'terraform'
+          default: 'terraform/dev'
 
 jobs:
   terraform:
