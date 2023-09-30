@@ -16,9 +16,9 @@ variable "inst_type" {
 }
 
 
-variable "instance_number" {
-  type = number
-}
+# variable "instance_number" {
+#   type = number
+# }
 
 
 variable "ingress1" {
@@ -46,4 +46,14 @@ variable "subnet_number" {
 variable "subnet_type" {
   type = string
   default = "public"
+}
+
+variable "instance_count_public" {
+  type = number
+  default = 0
+}
+
+variable "instance_count_private" {
+  type = number
+  default = 0
 }

@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
     bucket = "mybucketterra"
-    key    = "terraform.tfstate"
+    key    = "stg/terraform.tfstate"
     region = "us-east-1"
     #dynamodb_table = "terraform-state-lock-dynamo"
   }

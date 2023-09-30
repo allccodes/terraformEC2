@@ -6,6 +6,11 @@ on:
     paths:
       - 'terraform/**'
   workflow_dispatch:
+    inputs:
+      dir:
+          description: 'Directory with resources to be plan'
+          required: true
+          default: 'terraform/dev'
 
 jobs:
   terraform:
@@ -19,7 +24,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: 'terraform/'
+        working-directory: 'terraform/dev'
 
     steps:
       - name: Checkout

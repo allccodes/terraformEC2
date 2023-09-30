@@ -40,7 +40,7 @@ locals {
 # CREATE PUBLIC INSTANCE
 
 resource "aws_instance" "my_instance_public" {
-  count = var.subnet_type == "public" ? var.instance_number : 0
+  count = var.instance_count_public
   ami           = var.ami_id
   instance_type = var.inst_type
 
@@ -57,7 +57,7 @@ resource "aws_instance" "my_instance_public" {
 # CREATE PRIVATE INSTANCE
 
 resource "aws_instance" "my_instance_private" {
-  count = var.subnet_type == "private" ? var.instance_number : 0
+  count = var.instance_count_private
   ami           = var.ami_id
   instance_type = var.inst_type
 
