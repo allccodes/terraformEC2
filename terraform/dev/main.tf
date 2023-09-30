@@ -13,7 +13,8 @@ module "vpc" {
 
 module "ec2" {
   source    = "../../module/ec2"
-  instance_number = 2
+  instance_count_private = 2
+  instance_count_public = 2
   ami_id = "ami-092b99a36151a072e"
   subnet_id = "subnet-02507c6cb9e739f80"
   vpc_name = "myVPC"
