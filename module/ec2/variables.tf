@@ -16,9 +16,9 @@ variable "inst_type" {
 }
 
 
-variable "instance_number" {
-  type = number
-}
+# variable "instance_number" {
+#   type = number
+# }
 
 
 variable "ingress1" {
